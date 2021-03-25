@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAGA,AAAA,cAAc,CAAC,qBAAqB,GAAG,qBAAqB,CAAC;EAC3D,MAAM,EAAE,OAAO;CAChB;;AACD,AAAA,cAAc,CAAC,qBAAqB,AAAA,SAAS,GAAG,qBAAqB,CAAC;EACpE,MAAM,EAAE,WAAW;CACpB",
+    "sources": [
+        "../../../vendor/easycorp/easyadmin-bundle/assets/css/easyadmin-theme/switches.scss"
+    ],
+    "names": [],
+    "file": "switches.css"
+}

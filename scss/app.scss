@@ -1,0 +1,34 @@
+//GLOBAL SCRIPTS
+// @import "globals/variables";
+@import "globals/colors";
+
+//Mixins
+// @import "mixins/mixins";
+
+//RESPONSIVE
+// @import "globals/mobile";
+// @import "globals/tablet";
+// @import "globals/desktop";
+
+
+//Functions
+// @import "pages/navbar";
+// @import "pages/header";
+// @import "pages/footer";
+
+//COMPONENTS
+// @import "components/toast";
+@import "components/btn";
+// @import "components/header";
+
+//PAGES
+@import "globals/global";
+@import "pages/home";
+@import "pages/forms";
+@import "pages/calendar_show";
+@import "pages/index";
+@import "pages/dashboard";
+@import "pages/show";
+
+
+

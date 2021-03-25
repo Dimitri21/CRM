@@ -1,0 +1,75 @@
+//-----------------------------------------------------------------
+                            // TABLET
+//-----------------------------------------------------------------
+@media screen and (min-width : 725px) {
+    .dashboard {
+        height: 93vh;
+        //INNER
+        &-inner {
+            grid-template-columns: 22vw 78vw;
+            
+            //ASIDE
+            &-aside {
+                width: 22vw;
+                height: inherit;
+                    
+                //TODO - to replace using mixins
+                position: relative;
+                @include flex-row-center-center(column,space-between,none);
+                &-list {
+                    //TODO - to replace using mixins
+                    flex-direction: column;
+                    width: inherit;
+                    li {
+                        width: inherit;
+                        @include flex-row-center-center(row,none,center);
+                        margin-bottom: 0.1rem;
+                        background-color: $white-color;
+                        transition: background-color .3s ease-in-out;
+                        a {
+                            span {
+                                display: block;
+                            }
+                        }
+    
+                    }
+                }
+    
+                &-tools {
+                    width: 100%;
+                    display: flex;
+                }
+            }
+            
+            //CONTENT
+            &-content {
+                width: 78vw;
+            }
+        }
+    
+    }
+    
+
+    //PROJECT - MEMBERS
+    .project-members{
+
+        .role {
+            display: block;
+        }
+    }
+    #actions {
+        &> div {
+            max-width:50px;
+            @include flex-row-center-center(row,none,center);
+            form {
+                @include flex-row-center-center(row,center,center);
+            }
+        }
+    }
+    
+    #list_actions {
+        margin: 0  auto;
+        @include flex-row-center-center(row,none,center);
+    }
+
+}

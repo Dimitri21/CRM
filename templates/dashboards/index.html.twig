@@ -1,0 +1,164 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block body %}
+<div class="dashboard d-flex">
+        {# SideNav #}
+        <div class="sideNav">
+            <nav>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('calendar_new') }}">Nouveau rendez-vous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('contact_new') }}">Nouveau contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
+    {# Dashboard panel #}
+    <section class="dashboardPanel container-fluid">
+        <div class="row">
+            {# Agenda section #}
+            <div class="col-sm-7 ">
+                <div class="title">
+                    <div class="icon agenda">
+                        <img src="build/img/calendar.svg">
+                    </div>
+                    <h2>Agenda</h2>
+                </div>
+                {# Calendar #}
+                <div id="calendar-holder" class="card">
+                </div>
+            </div>
+            {# Contact section#}
+            <div class="col-sm-5 ">
+                <div class="title">
+                    <div class="icon contact">
+                        <img src="build/img/user.svg">
+                    </div>
+                    <h2>Contact</h2>
+                </div>
+                <div class="card">
+                    {# Searchbox Contact #}
+                    <div class="searchbox" id="contactSearch">
+                        <form action="{{ url('dashboard')}}" method="GET" class="d-flex flex-row" id="formSearchContact">
+                            <input type="text" name="search" placeholder="Rechercher un contact" class="form-control" id="inputSearch" required>
+                            <button type="submit" name="submit" class="btn" id="searchButton">Rechercher</button>
+                        </form>
+                    </div>
+                    {# Contact list #}
+                    <div class="contactList ">
+                        <table class="table">
+                            <tbody>
+                            {% for contact in contacts %}
+                                <tr>
+                                    <td>{{ contact.firstName }} {{ contact.lastName }}</td>
+                                    <td>{{ contact.phone }}</td>
+                                    <td>{{ contact.email }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ contact.adress }}</td>
+                                    <td>{{ contact.description }}</td>
+                                    <td>
+                                        <a href="{{ path('contact_show', {'id': contact.id}) }}">show</a>
+                                        <a href="{{ path('contact_edit', {'id': contact.id}) }}">edit</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="8">Ooops, votre recherche n'a pas donné de résultat</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css">
+{% endblock %}
+
+{% block javascripts %}
+
+    /* FULLCALENDAR */
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/locales-all.min.js"></script>
+
+
+    <script type="text/javascript">
+
+        /* FULL CALENDAR */
+
+        window.onload = () => {
+            let calendarElt = document.querySelector("#calendar-holder")
+            let calendar = new FullCalendar.Calendar(calendarElt, {
+                initialView: 'timeGridWeek',
+                locale: 'fr',
+                timeZone: 'Europe/Paris',
+                headerToolbar: {
+                    start: 'prev,next today',
+                    center: 'title',
+                    end: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: {{ data|raw }},
+                editable: true,
+                eventResizableFromStart: true
+            })
+            calendar.on('eventChange', (e) => {
+                let url = `/api/${e.event.id}/edit`
+                let data = {
+                    "title": e.event.title,
+                    "description": e.event.extendedProps.description,
+                    "start": e.event.start,
+                    "end": e.event.end,
+                    "backgroundColor": e.event.backgroundColor,
+                    "borderColor": e.event.borderColor,
+                    "textColor": e.event.textColor,
+                    "allDay": e.event.allDay
+                }
+
+                let xhr = new XMLHttpRequest
+                xhr.open("PUT", url)
+                xhr.send(JSON.stringify(data))
+            })
+            calendar.render()
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        /* SEARCH CONTACT*/
+        $(document).ready(function () {
+            $("#formSearchContact").submit(function(e){
+
+                e.preventDefault();
+
+                var form = $(this);
+                var search = $("#inputSearch").val();
+
+                $.ajax({
+                    type : form.attr('method'),
+                    url : form.attr('action'),
+                    data : search,
+                    success: function (data) {
+                        console.info(data);
+                    },
+                    error: function (data) {
+                        console.error(data);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

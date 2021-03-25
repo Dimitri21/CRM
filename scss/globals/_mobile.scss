@@ -1,0 +1,807 @@
+.dashboard {
+    max-width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    //INNER
+    &-inner {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: .2rem;
+        width: inherit;
+        height: 93vh;
+        overflow: hidden;
+        transition: all .3s ease-in-out;
+        //ASIDE
+        &-aside {
+            width: 100vw;
+            //TODO - to replace using mixins
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 5;
+            transition: all .3s ease-in-out;
+            background-color: $white-color;
+            @include flex-row-center-center(row,center,center);
+            &-list {
+                //TODO - to replace using mixins
+                @include flex-row-center-center(row,center,center)
+                background-color: $grey1-color;
+                li {
+                    width: inherit;
+                    @include flex-row-center-center(row,none,center);
+                    margin-bottom: 0.1rem;
+                    background-color: $white-color;
+                    transition: background-color .3s ease-in-out;
+                    a {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        padding: 0.7rem;
+                        i {
+                            width: 50px;
+                            font-size:2rem;
+                        }
+                        span {
+                            font-size: 1rem;
+                            display: none;
+                        }
+                    }
+
+                    &:hover {
+                        background-color: rgba($color: $dark-color, $alpha: .2);
+                    }
+                    &.active {
+                        border-left: 5px solid $success-color;
+                        background-color: rgba($color: $success-color, $alpha: .2);
+                    }
+
+                    &.projects {
+                        i {
+                            color: $primary-color;
+                        }
+                    }
+
+                    &.members {
+                        i {
+                            color: $warning-color;
+                        }
+                    }
+
+                    &.lists {
+                        i {
+                            color: $success-color;
+                        }
+                    }
+
+                    &.tasks {
+                        i {
+                            color: $danger-color;
+                        }
+                    }
+
+                }
+            }
+
+            &-tools {
+                @include flex-row-center-center(row,space-between,center);
+                display: none;
+                height: 50px;
+                border-top: 2px solid $grey1-color ;
+                
+                i {
+                    cursor: pointer;
+                    &:hover {
+                        color: rgba($color: $dark-color, $alpha: .5);
+                    }
+                }
+                div {
+                    padding: 0 .5rem;
+                    height: 50px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    i{
+                        font-size: 1.5rem;
+                        margin-right: .7rem;
+                    }
+                    span{
+                        font-size: 1rem;
+                    }
+                }
+                &>i {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    height: 50px;
+                    padding: 0 .5rem;
+                    font-size: 1.5rem;
+                }
+            }
+        }
+
+        //CONTENT
+        &-content {
+            width: 100vw;
+            max-width:inherit;
+            background-color: $grey-color;
+            &-title {
+                max-height: 160px;
+                @include flex-row-center-center(row,space-between,center);
+                padding: 1.5rem 2rem;
+                background-color: $white-color;
+                
+                //Add a new list on the projects
+                div {
+                    @include flex-row-center-center(row,space-between,center);
+                    span {
+                        height: 40px;
+                        width: 40px;
+                        display: block;
+                        border-radius: .3rem;
+                        transition: all .3s ease-in-out;
+                        background-color: $success-color;
+                        margin-left: .2rem;
+                        @include flex-row-center-center(row,center,center);
+                        &:first-of-type {
+                            background-color: $secondary-color;
+                        }
+                        i {
+                            cursor: pointer;
+                            color: $white-color;
+                            font-size: 1.5rem;
+                        }
+                        &:hover {
+                            background-color: rgba($color: $success-color, $alpha: .5);
+                        }
+                    }
+                }
+            }
+            
+            &-lists {
+                width: inherit;
+                height: 83vh;
+                overflow-x: scroll;
+                .project-list {
+                    display: grid;
+                    grid-template-columns: repeat(6,300px) ;
+
+                    //DEFAULT LIST
+                    &-tasks {
+                        
+                        &-task {
+                            width: 300px;
+                            //LIST TITLE
+                            &-title {
+                                height: 6vh; // 83vh - 6 = 77vh;
+                                margin: .2rem 0 2rem 0;
+                                padding:.5rem;
+                                @include flex-row-center-center(row,space-between,center);
+                                background-color: $white-color;
+                                border-left: 1px solid rgba($color: $dark-color, $alpha: .7);
+                                color: rgba($color: $dark-color, $alpha: .7);
+                                
+                                &-right {
+                                    //TODO - to replace using mixins
+                                    display: flex;
+                                    flex-direction: row;
+                                    align-items: center;
+                                    div {
+                                        margin-right: 1rem;
+                                        span {
+                                            &::before{
+                                                content: "/";
+                                            }
+                                        }
+                                        &:last-child {
+                                            @include flex-row-center-center(row,center,center);
+
+                                            &>* {
+                                                display: block;
+                                                color: rgba($color: $dark-color, $alpha: .7);
+                                                padding: 0 .3rem;
+                                                outline-style: none;
+                                                border: 1px solid rgba($color: $dark-color, $alpha: .7);
+                                                cursor: pointer;
+                                                background-color: $white-color;
+                                                
+                                                &:hover {
+                                                    background-color: rgba($color: $dark-color, $alpha: .2);
+                                                }
+                                            }
+                                            button {
+                                                border-radius: 0.3rem 0 0 .3rem;
+                                            }   
+                                            a {
+                                                border-radius: 0 0.3rem .3rem 0;
+                                            }
+                                        }
+                                    }
+                                    i {
+                                        font-size: 1rem;
+                                        padding: .2rem;
+                                    }
+
+                                    
+                                }
+                            }
+
+                            &-body {
+                                height:77vh;
+                                padding: 0 .5rem;
+
+                                //TODO - to replace using mixins
+                                display: flex;
+                                flex-direction: column;
+
+                                overflow-y: scroll;
+                                
+                                //TASK
+                                &-task {
+                                    position: relative;
+                                    width: 270px;
+                                    min-height: 125px;
+                                    margin-bottom: .5rem;
+                                    overflow: hidden;
+                                    border-radius: 0 .3rem .3rem 0;
+                                    border-left: 4px solid rgba($color: $dark-color, $alpha: .5);
+                                    &-front {
+                                        position: relative;
+                                        @include flex-row-center-center(column,space-between,none);
+                                        // display: flex;
+                                        // flex-direction: column;
+                                        // justify-content: space-between;
+                                        background-color: $white-color;
+                                        box-shadow: 0 2px 2px rgba($color: $dark-color, $alpha: .2);
+                                        padding: .5rem;
+                                        &-title {
+                                            @include flex-row-center-center(row,none,center);
+                                            // display: flex;
+                                            // flex-direction: row;
+                                            // align-items: center;
+                                            i {
+                                                font-size: 1.2rem;
+                                            }
+                                            span {
+                                                font-size: .8rem;
+                                                margin-left: .5rem;
+                                            }
+                                        }
+
+                                        &-lead {
+                                            @include flex-row-center-center(row,none,center);
+
+                                            // display: flex;
+                                            // flex-direction: row;
+                                            // align-items: center;
+                                            margin: .5rem 0;
+                                            &-picture {
+                                                width: 35px;
+                                                height: 35px;
+                                                border-radius: 50%;
+                                                overflow: hidden;
+                                                margin-right: .5rem;
+                                                img {
+                                                    width: 110%;
+                                                    position: relative;
+                                                    left: -3px;
+                                                }
+                                            }
+                                            &>span {
+                                                font-weight: 700;
+                                                color: rgba($color: $dark-color, $alpha: .5);
+                                            }
+                                        }
+
+                                        &-state {
+                                            // display: flex;
+                                            // flex-direction: row;
+                                            // justify-content: space-between;
+                                            // align-items: center;
+                                            @include flex-row-center-center(row,space-between,center);
+
+                                            color: rgba($color: $dark-color, $alpha: .5);
+                                            font-size: .8rem;
+                                            margin-bottom:.5rem;
+                                            span {
+                                                // display: flex;
+                                                // flex-direction: row;
+                                                // align-items: center;
+                                                @include flex-row-center-center(row,none,center);
+
+                                                &> * {
+                                                    &:first-child {
+                                                        display: inline-block;
+                                                        width: 15px;
+                                                        height: 15px;
+                                                        border-radius: 50%;
+                                                        background-color: rgba($color: $dark-color, $alpha: .5);
+                                                        margin-right: .2rem;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        &-members {
+                                            display: flex;
+                                            flex-direction: row;
+                                            align-items: center;
+                                            &-item {
+                                                font-size: .8rem;
+                                                padding: .1rem .4rem;
+                                                margin-right: .3rem;
+                                                border-radius: .3rem;
+                                                color: $success-color;
+                                                background-color: rgba($color: $success-color, $alpha: .3);
+                                            }
+                                        }
+                                        transition: all .3s ease-in-out;
+                                    
+                                    }
+
+                                    &-hover {
+                                       position: absolute;
+                                       @include flex-row-center-center(row,center,center);
+                                       //display: none;
+                                       padding: 0 0.5rem;
+                                       top: 0;
+                                       left: 0;
+                                       width: 100%;
+                                       height: 100%;
+                                       transition: all .3s ease-in-out;
+                                       background: rgba($color: $first-color, $alpha: 0);
+                                       a,form button{
+                                            @include flex-row-center-center(column,center,center);
+                                           width:45px;
+                                           height:45px;
+                                           background-color: rgba($color: $white-color, $alpha: .8);
+                                           border-radius: 50%;
+                                           margin: 0 0.5rem;
+                                           display: none;
+                                           cursor: pointer;
+                                           i {
+                                               padding: 1rem;
+                                               font-size:1.5rem;
+                                               color: $dark-color;
+                                           }
+                                       }
+                                       form {
+                                           button {
+                                               background: $danger-color;
+                                                i {
+                                                    color: $white-color;
+                                                }
+                                            }
+                                       }
+                                    }
+                                    &:hover{
+                                        cursor: pointer;
+                                        .project-list-tasks-task-body-task-hover{
+                                            display: flex;
+                                            background: rgba($color: $first-color, $alpha: 1);
+                                            a,form button{
+                                                display: flex;
+                                           }
+                                        }
+                                    }
+
+                                    //TASK - STATE 
+                                    &.active {
+                                        @include task_state($primary-color);
+                                    } 
+
+                                    &.solve {
+                                        @include task_state($success-color);
+                                    }
+
+                                    &.tested {
+                                        @include task_state($secondary-color);
+                                    }
+
+                                    &.closed {
+                                        @include task_state($third-color);
+                                    }
+                                    &.outdate {
+                                        @include task_state($danger-color);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //JS 
+        &.reduce {
+             grid-template-columns: 70px 100vw;
+            .dashboard-inner-aside {
+                width: 70px;
+                &-list {
+                    display: flex;
+                    flex-direction: column;
+                    width: inherit;
+                    li {
+                        text-align: center;
+                        a {
+                            span {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+    
+                &-tools {
+                    justify-content: flex-start;
+                    div {
+                        span {
+                            display: none;
+                        }
+                    }
+                    &>i {
+                        width: 0;
+                        position: relative;
+                        left: -22px;
+                    }
+                }
+            }
+            
+            .dashboard-inner-content {
+                width: 100%;
+                &-title {
+                    width: 97%;
+                    height: 10vh;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 1.5rem 4rem 1.5rem 2rem;
+                    background-color: $white-color;
+                    
+                    //Add a new list on the projects
+                    button {
+                        padding: 0.2rem .5rem;
+                        background-color: $success-color;
+                        border-radius: .3rem;
+                        transition: all .3s ease-in-out;
+
+                        i {
+                            cursor: pointer;
+                            color: $white-color;
+                            font-size: 2rem;
+                        }
+                        &:hover {
+                            background-color: rgba($color: $success-color, $alpha: .5);
+                        }
+                    }
+                }
+                
+                &-lists {
+                    width: inherit;
+                    height: 83vh;
+                    overflow-x: scroll;
+                    .project-list {
+                        display: grid;
+                        grid-template-columns: repeat(6,300px) ;
+                        //DEFAULT LIST
+                        &-tasks {
+
+                            &-task {
+                                width: 300px;
+                                //LIST TITLE
+                                &-title {
+                                    height: 6vh; // 83vh - 6 = 77vh;
+                                    margin: .2rem 0 2rem 0;
+                                    padding:.5rem;
+
+                                    //TODO to use mixins here
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: space-between;
+                                    align-items: center;
+
+                                    background-color: $white-color;
+                                    border-left: 1px solid rgba($color: $dark-color, $alpha: .7);
+                                    color: rgba($color: $dark-color, $alpha: .7);
+                                    &-right {
+
+                                        //TODO to use mixins here
+                                        display: flex;
+                                        flex-direction: row;
+                                        align-items: center;
+                                        
+                                        div {
+                                            margin-right: 1rem;
+                                            span {
+                                                &::before{
+                                                    content: "/";
+                                                }
+                                            }
+                                            &:last-child {
+                                            }
+                                        }
+                                        i {
+                                            font-size: 1rem;
+                                            padding: .2rem;
+                                        }
+
+                                        button {
+
+                                            color: rgba($color: $dark-color, $alpha: .7);
+                                            padding: 0 .3rem;
+                                            outline-style: none;
+                                            border: 1px solid rgba($color: $dark-color, $alpha: .7);
+                                            cursor: pointer;
+                                            &:first-of-type {
+                                                border-radius: .3rem 0 0 .3rem;
+                                            }
+                                            &:last-of-type {
+                                                border-radius: 0 .3rem .3rem 0;
+                                            }
+                                            &:hover {
+                                                background-color: rgba($color: $dark-color, $alpha: .2);
+                                            }
+                                        }
+
+                                    }
+                                }
+
+                                &-body {
+                                    height:77vh;
+                                    padding: 0 .5rem;
+                                    
+                                    //TODO to use mixins here
+                                    display: flex;
+                                    flex-direction: column;
+                                    overflow-y: scroll;
+                                
+                                    //TASK
+                                    &-task {
+                                        width: 265px;
+                                        position: relative;
+                                        border-radius: 0 .3rem .3rem 0;
+                                        margin-bottom: .5rem;
+
+                                        &-front {
+                                            width: 100%;
+                                            display: flex;
+                                            flex-direction: column;
+                                            justify-content: space-between;
+                                            background-color: $white-color;
+                                            box-shadow: 0 2px 2px rgba($color: $dark-color, $alpha: .2);
+                                            padding: .5rem;
+
+                                            &-title {
+                                                display: flex;
+                                                flex-direction: row;
+                                                align-items: center;
+                                                i {
+                                                    font-size: 1.2rem;
+                                                }
+                                                span {
+                                                    font-size: .8rem;
+                                                    margin-left: .5rem;
+                                                }
+                                            }
+
+                                            &-lead {
+                                                display: flex;
+                                                flex-direction: row;
+                                                align-items: center;
+                                                margin: .5rem 0;
+                                                &-picture {
+                                                    width: 35px;
+                                                    height: 35px;
+                                                    border-radius: 50%;
+                                                    overflow: hidden;
+                                                    margin-right: .5rem;
+                                                    img {
+                                                        width: 110%;
+                                                        position: relative;
+                                                        left: -3px;
+                                                    }
+                                                }
+                                                &>span {
+                                                    font-weight: 700;
+                                                    color: rgba($color: $dark-color, $alpha: .5);
+                                                }
+                                            }
+
+                                            &-state {
+                                                display: flex;
+                                                flex-direction: row;
+                                                justify-content: space-between;
+                                                align-items: center;
+                                                color: rgba($color: $dark-color, $alpha: .5);
+                                                font-size: .8rem;
+                                                span {
+                                                    display: flex;
+                                                    flex-direction: row;
+                                                    align-items: center;
+                                                    &> * {
+                                                        &:first-child {
+                                                            display: inline-block;
+                                                            width: 15px;
+                                                            height: 15px;
+                                                            border-radius: 50%;
+                                                            background-color: rgba($color: $dark-color, $alpha: .5);;
+                                                            margin-right: .2rem;
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            &-members {
+                                                display: flex;
+                                                flex-direction: row;
+                                                align-items: center;
+                                                &-item {
+                                                    font-size: .8rem;
+                                                    padding: .1rem .4rem;
+                                                    margin-right: .3rem;
+                                                    border-radius: .3rem;
+                                                    color: $success-color;
+                                                    background-color: rgba($color: $success-color, $alpha: .3);
+                                                }
+                                            }
+                                        
+                                        }
+
+                                        transition: all .3s ease-in-out;
+                                        
+                                        &:hover{
+                                            cursor: grab;
+                                        }
+                                        //TODO - faire un mixins
+                                        //TASK - STATE 
+                                        &.active {
+                                            .project-list-tasks-body-task-front {
+                                                span {
+                                                    &> * {
+                                                        &:first-child {
+                                                            background-color: $primary-color;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        } 
+
+                                        &.solve {
+                                            .project-list-tasks-body-task-front {
+                                                span {
+                                                    &> * {
+                                                        &:first-child {
+                                                            background-color: $success-color;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        &.tested {
+                                            .project-list-tasks-body-task-front {
+                                                span {
+                                                    &> * {
+                                                        &:first-child {
+                                                            background-color: $secondary-color;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        &.closed {
+                                            .project-list-tasks-body-task-front {
+                                                span {
+                                                    &> * {
+                                                        &:first-child {
+                                                            background-color: $third-color;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //TODO - à continuer plus tarde
+    &-list,&-task,&-member {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba($color: $dark-color, $alpha: .5);
+        &-add{
+            width: 350px;
+            margin: 0 auto;
+            border-radius: .3rem;
+            background-color: $white-color;
+            box-shadow: 0 2px 2px rgba($color: $dark-color, $alpha: .2);
+            transform: translateX(100vw);
+            transition: transform 0.3s ease-in-out;
+
+            &-title {
+                padding: .5rem .8rem;
+                text-align: center;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                i{
+                    display: inline-block;
+                    padding: .3rem;
+                    cursor: pointer;
+                }
+            }
+
+            &-form {
+                padding: 1rem;
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    &>* {
+                        border: none;
+                        border-radius: .3rem;
+                        outline-style: none;
+                    }
+                    button {
+                        background-color: $success-color;
+                        color: $white-color;
+                        font-size: 1.2rem;
+                        cursor: pointer;
+                    }
+                    
+                    //For Add Member side
+                    .members_list {
+                        @include flex-row-center-center(column, none, none);
+                        div {
+                          padding: .3rem 0;
+                            &>* {
+                                display: block;
+                            }
+                            @include flex-row-center-center(row, space-between, center);
+                        }
+                        display: none;
+                        &.show {
+                            display: flex;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.show{
+
+            display: flex;
+            .dashboard-list-add.add {
+                transform: translateX(0);
+            } 
+    
+            .dashboard-task-add.add {
+                transform: translateX(0);
+            } 
+
+            .dashboard-member-add.add {
+                transform: translateX(0);
+            } 
+        }
+        
+    }
+
+}
+

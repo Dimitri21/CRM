@@ -1,0 +1,8 @@
+.custom-switch .custom-control-input ~ .custom-control-label {
+  cursor: pointer;
+}
+
+.custom-switch .custom-control-input:disabled ~ .custom-control-label {
+  cursor: not-allowed;
+}
+/*# sourceMappingURL=switches.css.map */

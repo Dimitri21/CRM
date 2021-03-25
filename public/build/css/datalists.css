@@ -1,0 +1,63 @@
+dl.datalist {
+  border-radius: var(--border-radius);
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+dl.datalist .data-row {
+  background: var(--white);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 15px 20px;
+}
+
+@media (min-width: 1024px) {
+  dl.datalist .data-row {
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+  }
+}
+
+dl.datalist .data-row.with-background {
+  background: var(--form-bg);
+}
+
+dl.datalist dd {
+  color: var(--gray-600);
+  -webkit-box-flex: 100%;
+      -ms-flex: 100% 0 0px;
+          flex: 100% 0 0;
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  margin-bottom: 0;
+  padding-right: 10px;
+}
+
+@media (min-width: 1024px) {
+  dl.datalist dd {
+    -webkit-box-flex: 20%;
+        -ms-flex: 20% 0 0px;
+            flex: 20% 0 0;
+  }
+}
+
+dl.datalist dt {
+  font-weight: normal;
+}
+
+dl.datalist .data-help {
+  color: var(--gray-600);
+  font-size: var(--font-size-sm);
+  margin: 15px 0 0;
+}
+
+dl.datalist .data-help i {
+  color: var(--gray-600);
+}
+/*# sourceMappingURL=datalists.css.map */

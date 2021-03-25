@@ -1,0 +1,26 @@
+.error {
+    place-items: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    &-inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h2 {
+            //display: none;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 2.3rem;
+        }
+        &-image {
+            display: grid;
+            place-items: center;
+            img {
+                width: 50%;
+            }
+        }
+    }
+    
+}
