@@ -64,14 +64,8 @@ class Contact
      */
     private $categoryContact;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="contacts")
-     */
-    private $users;
-
     public function __construct()
     {
-        $this->users = new ArrayCollection();
         $this->createdAt = new \DateTime();
     }
 
@@ -184,33 +178,6 @@ class Contact
     public function setCategoryContact(?CategoryContact $categoryContact): self
     {
         $this->categoryContact = $categoryContact;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addContact($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            $user->removeContact($this);
-        }
 
         return $this;
     }

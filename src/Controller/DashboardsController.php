@@ -19,7 +19,7 @@ class DashboardsController extends AbstractController
         //$this->denyAccessUnlessGranted('ROLE_USER');
         // Get calendar event and search request
         $value = $request->get('search');
-        $events = $calendar->findAll();
+        $events = $calendar->getUserCalendar();
 
         // Get calendar events
         $calendarEvents = [];

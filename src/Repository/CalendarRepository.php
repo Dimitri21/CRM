@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Calendar;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Security;
+
 
 /**
  * @method Calendar|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,27 +16,31 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CalendarRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(
+        ManagerRegistry $registry,
+        Security $security)
     {
         parent::__construct($registry, Calendar::class);
+        $this->security = $security;
     }
 
     // /**
     //  * @return Calendar[] Returns an array of Calendar objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function getUserCalendar()
     {
+
+        $user = $this->security->getUser();
+
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('c.createdBy = :user')
+            ->setParameter('user', $user)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Calendar

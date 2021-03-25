@@ -49,24 +49,29 @@ class User implements UserInterface
     private $lastName;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Calendar::class, inversedBy="users")
-     */
-    private $calendars;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Contact::class, inversedBy="users")
-     */
-    private $contacts;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $isVerified = false;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Calendar::class, mappedBy="CreatedBy")
+     */
+    private $calendarEvents;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Calendar::class, mappedBy="members")
+     */
+    private $members;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createdAt;
+
     public function __construct()
     {
-        $this->calendars = new ArrayCollection();
-        $this->contacts = new ArrayCollection();
+        $this->createdAt = new \DateTime();
+        $this->members = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -175,30 +180,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Calendar[]
-     */
-    public function getCalendars(): Collection
-    {
-        return $this->calendars;
-    }
-
-    public function addCalendar(Calendar $calendar): self
-    {
-        if (!$this->calendars->contains($calendar)) {
-            $this->calendars[] = $calendar;
-        }
-
-        return $this;
-    }
-
-    public function removeCalendar(Calendar $calendar): self
-    {
-        $this->calendars->removeElement($calendar);
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Contact[]
      */
     public function getContacts(): Collection
@@ -230,6 +211,75 @@ class User implements UserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Calendar[]
+     */
+    public function getCalendarEvents(): Collection
+    {
+        return $this->calendarEvents;
+    }
+
+    public function addCalendarEvent(Calendar $calendarEvent): self
+    {
+        if (!$this->calendarEvents->contains($calendarEvent)) {
+            $this->calendarEvents[] = $calendarEvent;
+            $calendarEvent->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCalendarEvent(Calendar $calendarEvent): self
+    {
+        if ($this->calendarEvents->removeElement($calendarEvent)) {
+            // set the owning side to null (unless already changed)
+            if ($calendarEvent->getCreatedBy() === $this) {
+                $calendarEvent->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Calendar[]
+     */
+    public function getMembers(): Collection
+    {
+        return $this->members;
+    }
+
+    public function addMember(Calendar $member): self
+    {
+        if (!$this->members->contains($member)) {
+            $this->members[] = $member;
+            $member->addMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMember(Calendar $member): self
+    {
+        if ($this->members->removeElement($member)) {
+            $member->removeMember($this);
+        }
+
+        return $this;
+    }
+
+    public function getcreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

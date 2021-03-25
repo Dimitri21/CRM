@@ -60,19 +60,24 @@ class Calendar
     private $borderColor;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="calendars")
-     */
-    private $users;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $createdAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="calendarEvents")
+     */
+    private $createdBy;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="members")
+     */
+    private $members;
+
     public function __construct()
     {
-        $this->users = new ArrayCollection();
         $this->createdAt = new \DateTime();
+        $this->members = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -176,33 +181,6 @@ class Calendar
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addCalendar($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            $user->removeCalendar($this);
-        }
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
@@ -211,6 +189,42 @@ class Calendar
     public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?User
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?User $createdBy): self
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getMembers(): Collection
+    {
+        return $this->members;
+    }
+
+    public function addMember(User $member): self
+    {
+        if (!$this->members->contains($member)) {
+            $this->members[] = $member;
+        }
+
+        return $this;
+    }
+
+    public function removeMember(User $member): self
+    {
+        $this->members->removeElement($member);
 
         return $this;
     }

@@ -30,7 +30,10 @@ class CalendarController extends AbstractController
      */
     public function new(Request $request): Response
     {
+
         $calendar = new Calendar();
+        $user = $this->getUser();
+        $calendar->setCreatedBy($user);
         $form = $this->createForm(CalendarType::class, $calendar);
         $form->handleRequest($request);
 
