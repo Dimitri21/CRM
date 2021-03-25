@@ -61,11 +61,11 @@
                                     <td>{{ contact.email }}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ contact.adress }}</td>
+                                    <td>{{ contact.address }}</td>
                                     <td>{{ contact.description }}</td>
                                     <td>
-                                        <a href="{{ path('contact_show', {'id': contact.id}) }}">show</a>
-                                        <a href="{{ path('contact_edit', {'id': contact.id}) }}">edit</a>
+                                        <a href="{{ path('contact_show', {'id': contact.id}) }}">Voir</a>
+                                        <a href="{{ path('contact_edit', {'id': contact.id}) }}">Modifier</a>
                                     </td>
                                 </tr>
                             {% else %}
@@ -99,7 +99,6 @@
     <script type="text/javascript">
 
         /* FULL CALENDAR */
-
         window.onload = () => {
             let calendarElt = document.querySelector("#calendar-holder")
             let calendar = new FullCalendar.Calendar(calendarElt, {

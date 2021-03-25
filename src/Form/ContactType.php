@@ -26,7 +26,7 @@ class ContactType extends AbstractType
             ->add('email',null, [
                 'label' => 'Email'
             ])
-            ->add('adress',null, [
+            ->add('address',null, [
                 'label' => 'Adresse'
             ])
             ->add('categoryContact',EntityType::class, [

@@ -3,9 +3,13 @@
 {% block title %}New Calendar{% endblock %}
 
 {% block body %}
-    <h1>Create new Calendar</h1>
-
-    {{ include('calendar/_form.html.twig') }}
-
-    <a href="{{ path('calendar_index') }}">back to list</a>
+    <div class="forms">
+        <div class="formContainer">
+            <h1>Créer un nouveau rendez-vous</h1>
+            <div class="formContainerFlields">
+                {{ include('calendar/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+            </div>
+            <a href="{{ path('calendar_index') }}">Liste des contacts</a>
+        </div>
+    </div>
 {% endblock %}

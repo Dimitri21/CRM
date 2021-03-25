@@ -3,47 +3,48 @@
 {% block title %}Contact index{% endblock %}
 
 {% block body %}
-    <h1>Contact index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Description</th>
-                <th>Company</th>
-                <th>CreatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for contact in contacts %}
-            <tr>
-                <td>{{ contact.id }}</td>
-                <td>{{ contact.firstName }}</td>
-                <td>{{ contact.lastName }}</td>
-                <td>{{ contact.phone }}</td>
-                <td>{{ contact.email }}</td>
-                <td>{{ contact.address }}</td>
-                <td>{{ contact.description }}</td>
-                <td>{{ contact.company }}</td>
-                <td>{{ contact.createdAt ? contact.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('contact_show', {'id': contact.id}) }}">show</a>
-                    <a href="{{ path('contact_edit', {'id': contact.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('contact_new') }}">Create new</a>
+    <div class="container">
+        <div class="row index">
+            <div class="col">
+                <div class="title">
+                    <img src="{{ asset('build/img/User_Profile.png') }}">
+                    <h1>Vos contacts</h1>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Téléphone</th>
+                        <th>Email</th>
+                        <th>Adresse</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for contact in contacts %}
+                        <tr>
+                            <td>{{ contact.firstName }}</td>
+                            <td>{{ contact.lastName }}</td>
+                            <td>{{ contact.phone }}</td>
+                            <td>{{ contact.email }}</td>
+                            <td>{{ contact.address }}</td>
+                            <td>{{ contact.description }}</td>
+                            <td>
+                                <a href="{{ path('contact_show', {'id': contact.id}) }}">Voir</a>
+                                <a href="{{ path('contact_edit', {'id': contact.id}) }}">Editer</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="8">Aucun résultat</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 {% endblock %}

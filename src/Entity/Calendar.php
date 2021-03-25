@@ -27,12 +27,12 @@ class Calendar
     /**
      * @ORM\Column(type="datetime")
      */
-    private $startDate;
+    private $start;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $endDate;
+    private $end;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -94,24 +94,24 @@ class Calendar
 
     public function getStart(): ?\DateTimeInterface
     {
-        return $this->startDate;
+        return $this->start;
     }
 
-    public function setStart(\DateTimeInterface $startDate): self
+    public function setStart(\DateTimeInterface $start): self
     {
-        $this->startDate = $startDate;
+        $this->start = $start;
 
         return $this;
     }
 
-    public function getEndDate(): ?\DateTimeInterface
+    public function getEnd(): ?\DateTimeInterface
     {
-        return $this->endDate;
+        return $this->end;
     }
 
-    public function setEndDate(\DateTimeInterface $endDate): self
+    public function setEnd(\DateTimeInterface $end): self
     {
-        $this->endDate = $endDate;
+        $this->end = $end;
 
         return $this;
     }
