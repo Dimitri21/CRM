@@ -33,6 +33,7 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Calendar', 'fa fa-calendar-alt',  Calendar::class);
         yield MenuItem::linkToCrud('Contact', 'fa fa-id-card',  Contact::class);
         yield MenuItem::linkToCrud('User', 'fa fa-user',  User::class);
+        yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

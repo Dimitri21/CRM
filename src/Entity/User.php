@@ -54,7 +54,7 @@ class User implements UserInterface
     private $isVerified = false;
 
     /**
-     * @ORM\OneToMany(targetEntity=Calendar::class, mappedBy="CreatedBy")
+     * @ORM\OneToMany(targetEntity=Calendar::class, mappedBy="createdBy")
      */
     private $calendarEvents;
 
