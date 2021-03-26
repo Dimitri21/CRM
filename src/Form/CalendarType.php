@@ -26,8 +26,8 @@ class CalendarType extends AbstractType
             ->add('description')
             ->add('allDay')
             ->add('backgroundColor', ColorType::class)
-            ->add('borderColor', ColorType::class)
             ->add('textColor', ColorType::class)
+            ->add('borderColor', ColorType::class)
             ->add('members',EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'email',

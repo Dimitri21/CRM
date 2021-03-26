@@ -114,6 +114,7 @@
                 editable: true,
                 eventResizableFromStart: true
             })
+
             calendar.on('eventChange', (e) => {
                 let url = `/api/${e.event.id}/edit`
                 let data = {

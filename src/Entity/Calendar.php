@@ -55,7 +55,7 @@ class Calendar
     private $backgroundColor;
 
     /**
-     * @ORM\Column(type="string", length=7)
+     * @ORM\Column(type="string", length=7, nullable=true)
      */
     private $borderColor;
 

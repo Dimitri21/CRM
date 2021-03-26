@@ -21,8 +21,45 @@ class CalendarController extends AbstractController
     public function index(CalendarRepository $calendarRepository): Response
     {
         return $this->render('calendar/index.html.twig', [
-            'calendars' => $calendarRepository->findAll(),
+            'calendars' => $calendarRepository->getUserCalendar(),
         ]);
+    }
+
+    /**
+     * @Route("/agenda", name="calendar_agenda", methods={"GET"})
+     */
+    public function agenda(CalendarRepository $calendar): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        // Get calendar event
+
+        $events = $calendar->getUserCalendar();
+
+
+        // Get calendar events
+        $calendarEvents = [];
+        foreach ($events as $event) {
+            $calendarEvents[] = [
+                'id' => $event->getId(),
+                'start' => $event->getStart()->format('Y-m-d H:i:s'),
+                'end' => $event->getEnd()->format('Y-m-d H:i:s'),
+                'title' => $event->getTitle(),
+                'description' => $event->getDescription(),
+                'backgroundColor' => $event->getBackgroundColor(),
+                'borderColor' => $event->getBorderColor(),
+                'textColor' => $event->getTextColor(),
+                'allDay' => $event->getAllDay(),
+            ];
+        }
+
+        $data = json_encode($calendarEvents);
+
+        return $this->render('calendar/agenda.html.twig', [
+
+            'current_navlink' => 'dashboard',
+            'data' => $data
+        ]);
+
     }
 
     /**

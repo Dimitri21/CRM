@@ -16,10 +16,11 @@ class DashboardsController extends AbstractController
 
     public function index(Request $request, CalendarRepository $calendar, ContactRepository $contactRepository): Response
     {
-        //$this->denyAccessUnlessGranted('ROLE_USER');
+        $this->denyAccessUnlessGranted('ROLE_USER');
         // Get calendar event and search request
         $value = $request->get('search');
         $events = $calendar->getUserCalendar();
+
 
         // Get calendar events
         $calendarEvents = [];
@@ -33,7 +34,6 @@ class DashboardsController extends AbstractController
                 'backgroundColor' => $event->getBackgroundColor(),
                 'borderColor' => $event->getBorderColor(),
                 'textColor' => $event->getTextColor(),
-                'allDay' => $event->getAllDay(),
             ];
         }
 
