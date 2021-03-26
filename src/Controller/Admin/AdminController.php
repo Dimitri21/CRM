@@ -13,11 +13,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractDashboardController
 {
+
+
+
     /**
      * @Route("/admin", name="admin")
      */
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return parent::index();
     }
 

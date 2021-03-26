@@ -22,6 +22,7 @@ class ContactController extends AbstractController
     {
         return $this->render('contact/index.html.twig', [
             'contacts' => $contactRepository->findAll(),
+            'current_navlink' => 'contact'
         ]);
     }
 
@@ -30,6 +31,9 @@ class ContactController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        // Only access for connected user
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
@@ -45,6 +49,7 @@ class ContactController extends AbstractController
         return $this->render('contact/new.html.twig', [
             'contact' => $contact,
             'form' => $form->createView(),
+            'current_navlink' => 'contact'
         ]);
     }
 
@@ -53,8 +58,12 @@ class ContactController extends AbstractController
      */
     public function show(Contact $contact): Response
     {
+        // Only access for connected user
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         return $this->render('contact/show.html.twig', [
             'contact' => $contact,
+            'current_navlink' => 'contact'
         ]);
     }
 
@@ -63,6 +72,9 @@ class ContactController extends AbstractController
      */
     public function edit(Request $request, Contact $contact): Response
     {
+        // Only access for connected user
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
@@ -75,6 +87,7 @@ class ContactController extends AbstractController
         return $this->render('contact/edit.html.twig', [
             'contact' => $contact,
             'form' => $form->createView(),
+            'current_navlink' => 'contact'
         ]);
     }
 
@@ -83,6 +96,9 @@ class ContactController extends AbstractController
      */
     public function delete(Request $request, Contact $contact): Response
     {
+        // Only access for admin user
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         if ($this->isCsrfTokenValid('delete'.$contact->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($contact);

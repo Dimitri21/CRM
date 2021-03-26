@@ -16,7 +16,9 @@ class DashboardsController extends AbstractController
 
     public function index(Request $request, CalendarRepository $calendar, ContactRepository $contactRepository): Response
     {
+        // Only access for connected user
         $this->denyAccessUnlessGranted('ROLE_USER');
+
         // Get calendar event and search request
         $value = $request->get('search');
         $events = $calendar->getUserCalendar();

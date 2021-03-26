@@ -31,7 +31,8 @@ class CalendarType extends AbstractType
             ->add('backgroundColor', ColorType::class,[
                     'label' => "Couleur de l'évènement",
                     'attr' => [
-                        'class' => 'bgColorPicker'
+                        'class' => 'bgColorPicker',
+                        'value' => '#2a6cb8'
                     ],
                 ]
             )

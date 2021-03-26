@@ -22,6 +22,7 @@ class CalendarController extends AbstractController
     {
         return $this->render('calendar/index.html.twig', [
             'calendars' => $calendarRepository->getUserCalendar(),
+            'current_navlink' => 'calendar'
         ]);
     }
 
@@ -30,7 +31,9 @@ class CalendarController extends AbstractController
      */
     public function agenda(CalendarRepository $calendar): Response
     {
+        // Only access for connected user
         $this->denyAccessUnlessGranted('ROLE_USER');
+
         // Get calendar event
 
         $events = $calendar->getUserCalendar();
@@ -56,6 +59,7 @@ class CalendarController extends AbstractController
         return $this->render('calendar/agenda.html.twig', [
 
             'current_navlink' => 'dashboard',
+            'current_navlink' => 'calendar',
             'data' => $data
         ]);
 
@@ -66,6 +70,8 @@ class CalendarController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        // Only access for connected user
+        $this->denyAccessUnlessGranted('ROLE_USER');
 
         $calendar = new Calendar();
         $user = $this->getUser();
@@ -84,6 +90,7 @@ class CalendarController extends AbstractController
         return $this->render('calendar/new.html.twig', [
             'calendar' => $calendar,
             'form' => $form->createView(),
+            'current_navlink' => 'calendar'
         ]);
     }
 
@@ -92,8 +99,13 @@ class CalendarController extends AbstractController
      */
     public function show(Calendar $calendar): Response
     {
+        // Only access for connected user
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+
         return $this->render('calendar/show.html.twig', [
             'calendar' => $calendar,
+            'current_navlink' => 'calendar'
         ]);
     }
 
@@ -102,6 +114,8 @@ class CalendarController extends AbstractController
      */
     public function edit(Request $request, Calendar $calendar): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         $form = $this->createForm(CalendarType::class, $calendar);
         $form->handleRequest($request);
 
@@ -114,6 +128,7 @@ class CalendarController extends AbstractController
         return $this->render('calendar/edit.html.twig', [
             'calendar' => $calendar,
             'form' => $form->createView(),
+            'current_navlink' => 'calendar'
         ]);
     }
 
@@ -122,6 +137,10 @@ class CalendarController extends AbstractController
      */
     public function delete(Request $request, Calendar $calendar): Response
     {
+        // Only access for admin user
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+
         if ($this->isCsrfTokenValid('delete'.$calendar->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($calendar);
