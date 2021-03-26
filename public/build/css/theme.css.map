@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;EAiBE",
+    "sources": [
+        "../../../vendor/easycorp/easyadmin-bundle/assets/css/easyadmin-theme/theme.scss"
+    ],
+    "names": [],
+    "file": "theme.css"
+}

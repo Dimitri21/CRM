@@ -1,4 +1,4 @@
-.btn {
+.btnGlobal {
     display: block;
     background-color: $primary-color;
     max-width: 220px;
@@ -15,4 +15,9 @@
         transform: scale(1.05);
         
     }
+}
+
+.btnDelete {
+    background-color: rgb(172, 19, 19);
+
 }

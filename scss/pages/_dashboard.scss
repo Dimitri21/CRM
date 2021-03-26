@@ -33,9 +33,11 @@
             padding: 10px;
             display: flex;
             align-items: center;
+            margin-bottom: 10px;
             
             h2 {
                 margin-left: 20px;
+                font-size: 35px;
             }
         }
 
@@ -44,7 +46,6 @@
             border-radius: 10px;
             box-shadow: 2px 2px 5px #d8dfe7;
             padding: 10px;
-            margin: 20px;
 
             .searchbox{
                 margin-bottom: 20px;
@@ -62,29 +63,26 @@
         }
 
         .icon {
-            height: 40px;
-            width: 40px;
+            height: 65px;
+            width: 65px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 10px;
+            border-radius: 100%;
+            
+            img {
+                height: 85px;
+                width: 85px;
+            }
 
             &.agenda {
-                background-color: #4172aa;
+                background-color: rgb(218, 235, 255);
+        
                 
-                img {
-                    height: 20px;
-                    width: 20px;
-                }
             }
 
             &.contact {
-                background-color: #12a81e;
-
-                img {
-                    height: 20px;
-                    width: 20px;
-                }
+                background-color: rgb(208, 238, 226);
 
             }
         }

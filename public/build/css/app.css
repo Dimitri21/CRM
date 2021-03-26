@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&display=swap");
-.btn {
+.btnGlobal {
   display: block;
   background-color: #004b7b;
   max-width: 220px;
@@ -14,11 +14,19 @@
           box-shadow: 2px 2px 10px #d1d1d1;
 }
 
-.btn:hover {
+.btnGlobal:hover {
   background-color: #2a6cb8;
   color: white;
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
+}
+
+.btnDelete {
+  background-color: #ac1313;
+}
+
+.bgColorPicker {
+  width: 100px;
 }
 
 * {
@@ -190,10 +198,12 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 10px;
 }
 
 .dashboard .dashboardPanel .title h2 {
   margin-left: 20px;
+  font-size: 35px;
 }
 
 .dashboard .dashboardPanel .card {
@@ -202,7 +212,6 @@ main {
   -webkit-box-shadow: 2px 2px 5px #d8dfe7;
           box-shadow: 2px 2px 5px #d8dfe7;
   padding: 10px;
-  margin: 20px;
 }
 
 .dashboard .dashboardPanel .card .searchbox {
@@ -223,8 +232,8 @@ main {
 }
 
 .dashboard .dashboardPanel .icon {
-  height: 40px;
-  width: 40px;
+  height: 65px;
+  width: 65px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -234,25 +243,20 @@ main {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border-radius: 10px;
+  border-radius: 100%;
+}
+
+.dashboard .dashboardPanel .icon img {
+  height: 85px;
+  width: 85px;
 }
 
 .dashboard .dashboardPanel .icon.agenda {
-  background-color: #4172aa;
-}
-
-.dashboard .dashboardPanel .icon.agenda img {
-  height: 20px;
-  width: 20px;
+  background-color: #daebff;
 }
 
 .dashboard .dashboardPanel .icon.contact {
-  background-color: #12a81e;
-}
-
-.dashboard .dashboardPanel .icon.contact img {
-  height: 20px;
-  width: 20px;
+  background-color: #d0eee2;
 }
 
 .showItem {
@@ -331,5 +335,17 @@ main {
 .showItem .showContainer .showBottomAction a {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.agenda {
+  background-color: #f2f6fa;
+  padding-top: 100px;
+}
+
+.agenda #calendar-holder {
+  padding: 10px;
+  -webkit-box-shadow: 2px 2px 5px #c4c4c4;
+          box-shadow: 2px 2px 5px #c4c4c4;
+  border-radius: 20px;
 }
 /*# sourceMappingURL=app.css.map */
