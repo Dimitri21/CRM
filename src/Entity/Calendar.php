@@ -40,11 +40,6 @@ class Calendar
     private $description;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $allDay;
-
-    /**
      * @ORM\Column(type="string", length=7)
      */
     private $textColor;
@@ -78,6 +73,8 @@ class Calendar
     {
         $this->createdAt = new \DateTime();
         $this->members = new ArrayCollection();
+        $this->borderColor = "#ffffff";
+        $this->textColor = "#ffffff";
     }
 
     public function getId(): ?int
@@ -129,18 +126,6 @@ class Calendar
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getAllDay(): ?bool
-    {
-        return $this->allDay;
-    }
-
-    public function setAllDay(bool $allDay): self
-    {
-        $this->allDay = $allDay;
 
         return $this;
     }

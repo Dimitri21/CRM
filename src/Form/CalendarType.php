@@ -24,10 +24,7 @@ class CalendarType extends AbstractType
                 'date_widget' => 'single_text'
             ])
             ->add('description')
-            ->add('allDay')
             ->add('backgroundColor', ColorType::class)
-            ->add('textColor', ColorType::class)
-            ->add('borderColor', ColorType::class)
             ->add('members',EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'email',

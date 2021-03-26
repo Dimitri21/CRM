@@ -48,7 +48,6 @@ class CalendarController extends AbstractController
                 'backgroundColor' => $event->getBackgroundColor(),
                 'borderColor' => $event->getBorderColor(),
                 'textColor' => $event->getTextColor(),
-                'allDay' => $event->getAllDay(),
             ];
         }
 
@@ -79,7 +78,7 @@ class CalendarController extends AbstractController
             $entityManager->persist($calendar);
             $entityManager->flush();
 
-            return $this->redirectToRoute('calendar_index');
+            return $this->redirectToRoute('dashboard');
         }
 
         return $this->render('calendar/new.html.twig', [

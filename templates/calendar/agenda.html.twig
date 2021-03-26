@@ -38,7 +38,9 @@
                 },
                 events: {{ data|raw }},
                 editable: true,
-                eventResizableFromStart: true
+                eventResizableFromStart: true,
+                allDaySlot: false
+
             })
             calendar.on('eventChange', (e) => {
                 let url = `/api/${e.event.id}/edit`
@@ -49,8 +51,6 @@
                     "end": e.event.end,
                     "backgroundColor": e.event.backgroundColor,
                     "borderColor": e.event.borderColor,
-                    "textColor": e.event.textColor,
-                    "allDay": e.event.allDay
                 }
 
                 let xhr = new XMLHttpRequest

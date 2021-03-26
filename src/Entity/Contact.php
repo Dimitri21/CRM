@@ -45,12 +45,12 @@ class Contact
     private $address;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", length=255, nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="text", length=150, nullable=true)
+     * @ORM\Column(type="string", length=150, nullable=true)
      */
     private $company;
 

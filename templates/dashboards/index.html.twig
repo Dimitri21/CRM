@@ -96,6 +96,7 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/locales-all.min.js"></script>
 
 
+
     <script type="text/javascript">
 
         /* FULL CALENDAR */
@@ -106,13 +107,15 @@
                 locale: 'fr',
                 timeZone: 'Europe/Paris',
                 headerToolbar: {
-                    start: 'prev,next today',
+                    start: 'prev,next',
                     center: 'title',
-                    end: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    end: 'dayGridMonth,timeGridWeek'
                 },
                 events: {{ data|raw }},
                 editable: true,
-                eventResizableFromStart: true
+                eventResizableFromStart: true,
+                allDaySlot: false
+
             })
 
             calendar.on('eventChange', (e) => {
@@ -123,9 +126,6 @@
                     "start": e.event.start,
                     "end": e.event.end,
                     "backgroundColor": e.event.backgroundColor,
-                    "borderColor": e.event.borderColor,
-                    "textColor": e.event.textColor,
-                    "allDay": e.event.allDay
                 }
 
                 let xhr = new XMLHttpRequest
