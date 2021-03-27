@@ -9,10 +9,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/calendar")
+ *
+ * Require ROLE_USER for *every* controller method in this class.
+ *
+ * @IsGranted("ROLE_USER")
  */
+
 class CalendarController extends AbstractController
 {
     /**
@@ -31,8 +37,6 @@ class CalendarController extends AbstractController
      */
     public function agenda(CalendarRepository $calendar): Response
     {
-        // Only access for connected user
-        $this->denyAccessUnlessGranted('ROLE_USER');
 
         // Get calendar event
 
@@ -70,9 +74,6 @@ class CalendarController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        // Only access for connected user
-        $this->denyAccessUnlessGranted('ROLE_USER');
-
         $calendar = new Calendar();
         $user = $this->getUser();
         $calendar->setCreatedBy($user);
@@ -99,9 +100,6 @@ class CalendarController extends AbstractController
      */
     public function show(Calendar $calendar): Response
     {
-        // Only access for connected user
-        $this->denyAccessUnlessGranted('ROLE_USER');
-
 
         return $this->render('calendar/show.html.twig', [
             'calendar' => $calendar,
@@ -114,7 +112,6 @@ class CalendarController extends AbstractController
      */
     public function edit(Request $request, Calendar $calendar): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
 
         $form = $this->createForm(CalendarType::class, $calendar);
         $form->handleRequest($request);

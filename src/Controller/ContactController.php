@@ -9,9 +9,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 /**
  * @Route("/contact")
+ *
+ * Require ROLE_USER for *every* controller method in this class.
+ *
+ * @IsGranted("ROLE_USER")
  */
 class ContactController extends AbstractController
 {
@@ -31,8 +37,6 @@ class ContactController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        // Only access for connected user
-        $this->denyAccessUnlessGranted('ROLE_USER');
 
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
@@ -58,8 +62,6 @@ class ContactController extends AbstractController
      */
     public function show(Contact $contact): Response
     {
-        // Only access for connected user
-        $this->denyAccessUnlessGranted('ROLE_USER');
 
         return $this->render('contact/show.html.twig', [
             'contact' => $contact,
@@ -72,8 +74,6 @@ class ContactController extends AbstractController
      */
     public function edit(Request $request, Contact $contact): Response
     {
-        // Only access for connected user
-        $this->denyAccessUnlessGranted('ROLE_USER');
 
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);

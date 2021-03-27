@@ -99,7 +99,7 @@ main {
   text-align: center;
 }
 
-.forms .formContainer .formContainerFlields {
+.forms .formContainer .formContainerFields {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -108,7 +108,7 @@ main {
           justify-content: center;
 }
 
-.forms .formContainer .formContainerFlields .form-group {
+.forms .formContainer .formContainerFields .form-group {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

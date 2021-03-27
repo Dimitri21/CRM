@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+<div class="forms">
+    <div class="formContainer">
+        <h1>Editer votre profil</h1>
+            <div class="formContainerFields">
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <button class="btnGlobal">{{ button_label|default('Sauvegarder') }}</button>
+                {{ form_end(form) }}
+            </div>
+    </div>
+</div>
+
+{% endblock %}

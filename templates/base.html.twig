@@ -50,7 +50,10 @@
                     </li>
                 </ul>
                 <form class="form-inline">
-                    <a href="{{ path('app_logout') }}" class="btn btn-outline-success">Déconnexion</a>
+                    {% if app.user %}
+                        <a href="{{ path('app_logout') }}" class="btn btn-outline-success">Déconnexion</a>
+
+                    {% endif %}
                 </form>
             </div>
         </nav>
