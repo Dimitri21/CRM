@@ -40,10 +40,11 @@
 
         <div class="showBottomAction">
             <a href="{{ path('contact_index') }}">Liste des contacts</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('contact_edit', {'id': contact.id}) }}">Editer</a>
 
-            <a href="{{ path('contact_edit', {'id': contact.id}) }}">Editer</a>
-
-            {{ include('contact/_delete_form.html.twig') }}
+                {{ include('contact/_delete_form.html.twig') }}
+            {% endif %}
         </div>
     </div>
 </div>

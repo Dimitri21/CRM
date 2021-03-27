@@ -232,8 +232,8 @@ main {
 }
 
 .dashboard .dashboardPanel .icon {
-  height: 65px;
-  width: 65px;
+  height: 70px;
+  width: 70px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -251,11 +251,11 @@ main {
   width: 85px;
 }
 
-.dashboard .dashboardPanel .icon.agenda {
+.dashboard .dashboardPanel .icon.agendaIcon {
   background-color: #daebff;
 }
 
-.dashboard .dashboardPanel .icon.contact {
+.dashboard .dashboardPanel .icon.contactIcon {
   background-color: #d0eee2;
 }
 

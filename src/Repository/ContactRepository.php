@@ -19,19 +19,14 @@ class ContactRepository extends ServiceEntityRepository
         parent::__construct($registry, Contact::class);
     }
 
+     /**
+     * @return Contact[] Returns an array of Contact objects
+     */
     public function findLatestContact($value): array
     {
 
         if ($value) {
-            return $this->createQueryBuilder('c')
-                ->orWhere('c.firstName = :val')
-                ->orWhere('c.lastName = :val')
-                ->orWhere('c.phone = :val')
-                ->orWhere('c.email = :val')
-                ->setParameter('val', $value)
-                ->getQuery()
-                ->getResult()
-                ;
+
 
         } else {
             return $this->createQueryBuilder('q')
@@ -42,6 +37,25 @@ class ContactRepository extends ServiceEntityRepository
                 ;
         }
     }
+
+    /**
+     * @return Contact[] Returns an array of Contact objects
+     */
+    public function findContact($value): array {
+        if ($value) {
+            return $this->createQueryBuilder('c')
+                ->orWhere('c.firstName = :val')
+                ->orWhere('c.lastName = :val')
+                ->orWhere('c.phone = :val')
+                ->orWhere('c.email = :val')
+                ->setParameter('val', $value)
+                ->getQuery()
+                ->getResult()
+                ;
+        }
+    }
+
+
     // /**
     //  * @return Contact[] Returns an array of Contact objects
     //  */

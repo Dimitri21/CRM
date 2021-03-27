@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\File;
 
 class UserProfileController extends AbstractController
 {
@@ -16,17 +17,32 @@ class UserProfileController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        //Verifiying if the user exist
-        $this->denyAccessUnlessGranted('ROLE_USER');
-
         //Get the user
         $user = $this->getUser();
 
+        //Create form
         $form = $this->createFormBuilder($user)
-            ->add('firstName', TextType::class)
-            ->add('lastName', TextType::class)
-            ->add('picture', FileType::class)
+            ->add('firstName', TextType::class, [
+                    'label' => 'Prénom'
+            ])
+            ->add('lastName', TextType::class,[
+            'label' => 'Nom'
+            ])
+            ->add('picture', FileType::class, [
+                'label' => 'Image de profil',
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2048k',
+                        'mimeTypes' => [
+                            'image',
+                        ],
+                        'mimeTypesMessage' => 'Merci de télécharger une image',
+                    ])
+                ]
+            ])
             ->getForm();
+
+        // TODO https://symfony.com/doc/current/controller/upload_file.html
 
         $form->handleRequest($request);
 

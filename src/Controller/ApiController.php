@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Calendar;
 use App\Entity\Contact;
+use App\Repository\ContactRepository;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -78,14 +79,18 @@ class ApiController extends AbstractController
     /**
      * @Route("/api/get", name="api_get_contact", methods={"GET"})
      */
-    public function getContact(?Contact $contact, Request $request)
+    public function getContact(?Contact $contact, Request $request, ContactRepository $contactRepository)
     {
-
         //Get the data
         $value = $request->get('search');
 
-        if(isset($value) && !empty($value)){
+        $data = $contactRepository->findLatestContact($value);
 
+        if(isset($value) && !empty($value)){
+            return new Response($data, 200);
+        } else {
+            // Incomplete data
+            return new Response('Incomplete data', 404);
         }
 
     }

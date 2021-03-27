@@ -37,7 +37,9 @@
                             <td>{{ calendar.textColor }}</td>
                             <td>
                                 <a href="{{ path('calendar_show', {'id': calendar.id}) }}">Voir</a>
-                                <a href="{{ path('calendar_edit', {'id': calendar.id}) }}">Editer</a>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path('calendar_edit', {'id': calendar.id}) }}">Editer</a>
+                                {% endif %}
                             </td>
                         </tr>
                     {% else %}
