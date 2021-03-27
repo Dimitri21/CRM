@@ -39,9 +39,9 @@
         </table>
 
         <div class="showBottomAction">
-            <a href="{{ path('contact_index') }}">Liste des contacts</a>
+            <a href="{{ path('contact_index') }}" class="btn btn-outline-info">Liste des contacts</a>
             {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('contact_edit', {'id': contact.id}) }}">Editer</a>
+                <a href="{{ path('contact_edit', {'id': contact.id}) }}" class="btn btn-outline-success">Editer</a>
 
                 {{ include('contact/_delete_form.html.twig') }}
             {% endif %}

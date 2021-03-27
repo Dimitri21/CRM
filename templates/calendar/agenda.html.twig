@@ -40,6 +40,9 @@
                     end: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
                 events: {{ data|raw }},
+                eventClick: function (info) {
+                    window.open('/calendar/' + info.event.id)
+                },
                 editable: true,
                 eventResizableFromStart: true,
                 allDaySlot: false

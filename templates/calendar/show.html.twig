@@ -31,10 +31,10 @@
             </table>
 
             <div class="showBottomAction">
-                <a href="{{ path('calendar_index') }}">Liste des rendez-vous</a>
+                <a href="{{ path('calendar_index') }}" class="btn btn-outline-info">Liste des rendez-vous</a>
 
                 {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('calendar_edit', {'id': calendar.id}) }}">Edtier</a>
+                    <a href="{{ path('calendar_edit', {'id': calendar.id}) }}" class="btn btn-outline-success">Edtier</a>
 
                     {{ include('calendar/_delete_form.html.twig') }}
                 {% endif %}
