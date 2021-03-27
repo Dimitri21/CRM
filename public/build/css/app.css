@@ -21,12 +21,16 @@
           transform: scale(1.05);
 }
 
-.btnDelete {
-  background-color: #ac1313;
+.btn {
+  -webkit-transition: -webkit-transform ease-in 0.3s;
+  transition: -webkit-transform ease-in 0.3s;
+  transition: transform ease-in 0.3s;
+  transition: transform ease-in 0.3s, -webkit-transform ease-in 0.3s;
 }
 
-.linkDelete {
-  color: #ac1313;
+.btn:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 .bgColorPicker {
@@ -121,14 +125,6 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   min-width: 400px;
-}
-
-.calendar_show {
-  margin-top: 100px;
-}
-
-.calendar_show h1 {
-  margin-bottom: 50px;
 }
 
 .index {
@@ -264,7 +260,7 @@ main {
 }
 
 .showItem {
-  padding-top: 120px;
+  padding-top: 80px;
   padding-bottom: 120px;
   min-height: 100vh;
   display: -webkit-box;
@@ -321,24 +317,6 @@ main {
 
 .showItem .showContainer table {
   margin-bottom: 80px;
-}
-
-.showItem .showContainer .showBottomAction {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.showItem .showContainer .showBottomAction a {
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 .agenda {

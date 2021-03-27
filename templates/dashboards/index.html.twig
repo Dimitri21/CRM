@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Dashboard {% endblock %}
+{% block title %} Tableau de bord {% endblock %}
 
 {% block body %}
 <div class="dashboard d-flex">
@@ -17,7 +17,6 @@
                 </ul>
             </nav>
         </div>
-
 
     {# Dashboard panel #}
     <section class="dashboardPanel container-fluid">
@@ -64,9 +63,9 @@
                                     <td>{{ contact.address }}</td>
                                     <td>{{ contact.description }}</td>
                                     <td>
-                                        <a href="{{ path('contact_show', {'id': contact.id}) }}">Voir</a>
+                                        <a href="{{ path('contact_show', {'id': contact.id}) }}" class="btn btn-outline-info">Voir</a>
                                         {% if is_granted('ROLE_ADMIN') %}
-                                            <a href="{{ path('contact_edit', {'id': contact.id}) }}">Modifier</a>
+                                            <a href="{{ path('contact_edit', {'id': contact.id}) }}" class="btn btn-outline-success">Modifier</a>
                                         {% endif %}
                                     </td>
                                 </tr>

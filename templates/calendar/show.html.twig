@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Calendar{% endblock %}
+{% block title %}Rendez-vous{% endblock %}
 
 {% block body %}
     <div class="showItem">
@@ -30,11 +30,12 @@
                 </tbody>
             </table>
 
-            <div class="showBottomAction">
+            <div class="d-flex justify-content-center mb-3">
                 <a href="{{ path('calendar_index') }}" class="btn btn-outline-info">Liste des rendez-vous</a>
-
+            </div>
+            <div class="d-flex justify-content-center">
                 {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('calendar_edit', {'id': calendar.id}) }}" class="btn btn-outline-success">Edtier</a>
+                    <a href="{{ path('calendar_edit', {'id': calendar.id}) }}" class="btn btn-outline-success mr-2">Edtier</a>
 
                     {{ include('calendar/_delete_form.html.twig') }}
                 {% endif %}

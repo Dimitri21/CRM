@@ -17,12 +17,10 @@
     }
 }
 
-.btnDelete {
-    background-color: rgb(172, 19, 19);
+.btn {
+    transition: transform ease-in 0.3s;
 
-}
-
-.linkDelete {
-    color: rgb(172, 19, 19);
-
+    &:hover {
+        transform: scale(1.05);
+    }
 }

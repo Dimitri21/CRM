@@ -1,5 +1,5 @@
 .showItem {
-    padding-top: 120px;
+    padding-top: 80px;
     padding-bottom: 120px;
     min-height: 100vh;
     display: flex;
@@ -49,15 +49,6 @@
             margin-bottom: 80px;
         }
 
-        .showBottomAction {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-                a {
-                    margin-left: 10px;
-                    margin-right: 10px;
-                }
-        }
     }
 
 }

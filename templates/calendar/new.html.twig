@@ -9,7 +9,9 @@
             <div class="formContainerFields">
                 {{ include('calendar/_form.html.twig', {'button_label': 'Enregistrer'}) }}
             </div>
-            <a href="{{ path('calendar_index') }}">Liste des contacts</a>
+            <div class="d-flex justify-content-center mt-4">
+                <a href="{{ path('calendar_index') }}">Liste des contacts</a>
+            </div>
         </div>
     </div>
 {% endblock %}
