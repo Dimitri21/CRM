@@ -51,22 +51,39 @@ main {
 }
 
 .home {
+  height: 100vh;
   margin-top: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  background: linear-gradient(80deg, #fff 50%, #153a7e 50%);
 }
 
 .home img {
   width: 320px;
 }
 
+.home .leftSide {
+  margin-right: 100px;
+}
+
 .home .form {
+  padding: 20px;
   max-width: 400px;
   margin-top: 100px;
+  background-color: #fff;
+  height: 330px;
+  margin-left: 40px;
+  border-radius: 20px;
+  -webkit-box-shadow: 2px 2px 2px #e0e0e0;
+          box-shadow: 2px 2px 2px #e0e0e0;
 }
 
 .home .form input {
@@ -322,6 +339,7 @@ main {
 .agenda {
   background-color: #f2f6fa;
   padding-top: 100px;
+  padding-bottom: 150px;
 }
 
 .agenda #calendar-holder {

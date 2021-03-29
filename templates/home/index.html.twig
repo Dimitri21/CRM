@@ -6,12 +6,13 @@
 <div class="container-fluid home">
 
     <section class="row">
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-6 leftSide">
             <img src="build/img/home_Two_Color.png">
             <h1>Bienvenue sur le CRM de Minimalist</h1>
         </div>
         {# Login Form #}
         <div class="col-sm-12 col-md-6 form">
+
             <form method="post">
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>

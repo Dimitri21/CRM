@@ -41,7 +41,10 @@ class CalendarType extends AbstractType
                 'choice_label' => 'email',
                 'expanded' => true,
                 'multiple' => true,
-                'label' => 'Membres'
+                'label' => 'Membres',
+                'attr' => [
+                    'class' => 'userPicker'
+                ]
             ])
         ;
     }

@@ -24,9 +24,9 @@ class CalendarRepository extends ServiceEntityRepository
         $this->security = $security;
     }
 
-    // /**
-    //  * @return Calendar[] Returns an array of Calendar objects
-    //  */
+    /**
+    * @return Calendar[] Returns an array of Calendar objects
+    */
 
     public function getUserCalendar()
     {

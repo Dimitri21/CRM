@@ -16,13 +16,11 @@ class DashboardsController extends AbstractController
 
     public function index(Request $request, CalendarRepository $calendar, ContactRepository $contactRepository): Response
     {
-
-        // Get calendar event and search request
-        $value = $request->get('search');
+        // FULL CALENDAR
+        // Get celendar events of user
         $events = $calendar->getUserCalendar();
 
-
-        // Get calendar events
+        // Prepare data
         $calendarEvents = [];
         foreach ($events as $event) {
             $calendarEvents[] = [
@@ -37,11 +35,30 @@ class DashboardsController extends AbstractController
             ];
         }
 
+        // Get events where the user is member
+        foreach ($this->getUser()->getMembers() as $eventMember) {
+            $calendarEvents[] = [
+                'id' => $eventMember->getId(),
+                'start' => $eventMember->getStart()->format('Y-m-d H:i:s'),
+                'end' => $eventMember->getEnd()->format('Y-m-d H:i:s'),
+                'title' => $eventMember->getTitle(),
+                'description' => $eventMember->getDescription(),
+                'backgroundColor' => $eventMember->getBackgroundColor(),
+                'borderColor' => $eventMember->getBorderColor(),
+                'textColor' => $eventMember->getTextColor(),
+            ];
+        }
+
         $data = json_encode($calendarEvents);
 
-        // return view and get last contacts
+        // Get search request
+        $value = $request->get('request');
+
+        $contacts = $contactRepository->findLatestContact($value);
+
+        // return view
         return $this->render('dashboards/index.html.twig', [
-            'contacts' => $contactRepository->findLatestContact($value),
+            'contacts' => $contacts,
             'current_navlink' => 'dashboard',
             'data' => $data
         ]);

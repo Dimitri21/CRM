@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Calendar;
+use App\Entity\User;
 use App\Form\CalendarType;
 use App\Repository\CalendarRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,17 +32,26 @@ class CalendarController extends AbstractController
     /**
      * @Route("/agenda", name="calendar_agenda", methods={"GET"})
      */
-    public function agenda(CalendarRepository $calendar): Response
+    public function agenda(CalendarRepository $calendarRepository): Response
     {
 
         // Get calendar event
+        $events = $calendarRepository->getUserCalendar();
 
-        $events = $calendar->getUserCalendar();
-
-
-        // Get calendar events
+        // Format for json
         $calendarEvents = [];
         foreach ($events as $event) {
+
+            // For each event, get members of the event
+            $eventUser = [];
+            foreach ($event->getMembers() as $member) {
+                $eventUser[] = [
+                  'id' => $member->getId(),
+                  'firstName' => $member->getFirstName(),
+                  'lastName' => $member->getLastName(),
+                ];
+            }
+
             $calendarEvents[] = [
                 'id' => $event->getId(),
                 'start' => $event->getStart()->format('Y-m-d H:i:s'),
@@ -52,6 +63,21 @@ class CalendarController extends AbstractController
                 'textColor' => $event->getTextColor(),
             ];
         }
+
+        // Get event where the user is member
+        foreach ($this->getUser()->getMembers() as $eventMember) {
+            $calendarEvents[] = [
+                'id' => $eventMember->getId(),
+                'start' => $eventMember->getStart()->format('Y-m-d H:i:s'),
+                'end' => $eventMember->getEnd()->format('Y-m-d H:i:s'),
+                'title' => $eventMember->getTitle(),
+                'description' => $eventMember->getDescription(),
+                'backgroundColor' => $eventMember->getBackgroundColor(),
+                'borderColor' => $eventMember->getBorderColor(),
+                'textColor' => $eventMember->getTextColor(),
+            ];
+        }
+
 
         $data = json_encode($calendarEvents);
 
@@ -67,11 +93,31 @@ class CalendarController extends AbstractController
     /**
      * @Route("/new", name="calendar_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, UserRepository $userRepository): Response
     {
         $calendar = new Calendar();
+
+        // Get user and set calendar to user
         $user = $this->getUser();
         $calendar->setCreatedBy($user);
+
+        // Retrieve all user for selecting member of the calendar event
+        $allUsers = $userRepository->findAll();
+
+        // Json options for 2select
+        $userOptions = [];
+
+        foreach ($allUsers as $allUser) {
+            $userOptions[] = [
+                'results' => [
+                    'id' => $allUser->getId(),
+                    'text' => $allUser->getEmail(),
+                ]
+            ];
+        }
+
+        $data2select = json_encode($userOptions);
+
         $form = $this->createForm(CalendarType::class, $calendar);
         $form->handleRequest($request);
 
@@ -86,7 +132,8 @@ class CalendarController extends AbstractController
         return $this->render('calendar/new.html.twig', [
             'calendar' => $calendar,
             'form' => $form->createView(),
-            'current_navlink' => 'calendar'
+            'current_navlink' => 'calendar',
+            'allUsers' => $data2select
         ]);
     }
 

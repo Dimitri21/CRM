@@ -41,9 +41,7 @@ class ApiController extends AbstractController
 
         if (
             isset($donnees->title) && !empty($donnees->title) &&
-            isset($donnees->start) && !empty($donnees->start) &&
-            isset($donnees->description) && !empty($donnees->description) &&
-            isset($donnees->backgroundColor) && !empty($donnees->backgroundColor)
+            isset($donnees->start) && !empty($donnees->start)
         ) {
 
             // Data are complete, code initiation
@@ -82,12 +80,23 @@ class ApiController extends AbstractController
     public function getContact(?Contact $contact, Request $request, ContactRepository $contactRepository)
     {
         //Get the data
-        $value = $request->get('search');
+        $value = $request->get('request');
+        // Get the search response
+        $contacts = $contactRepository->findContact($value);
 
-        $data = $contactRepository->findLatestContact($value);
+        $data = [];
+        foreach ($contacts as $contact) {
+            $data[] = [
+                'firstName' => $contact->getFirstName(),
+                'lastName' => $contact->getLastName(),
+                'email' => $contact->getEmail(),
+                'phone' => $contact->getPhone()
+            ];
+        }
 
-        if(isset($value) && !empty($value)){
-            return new Response($data, 200);
+        //Send data to page
+        if(isset($data) && !empty($data)){
+            return new Response(json_encode($data), 200);
         } else {
             // Incomplete data
             return new Response('Incomplete data', 404);

@@ -25,17 +25,13 @@ class ContactRepository extends ServiceEntityRepository
     public function findLatestContact($value): array
     {
 
-        if ($value) {
-
-
-        } else {
             return $this->createQueryBuilder('q')
                 ->setMaxResults(10)
                 ->orderBy('q.createdAt', 'DESC')
                 ->getQuery()
                 ->getResult()
                 ;
-        }
+
     }
 
     /**
@@ -52,6 +48,8 @@ class ContactRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getResult()
                 ;
+        } else {
+            return ['error'];
         }
     }
 
