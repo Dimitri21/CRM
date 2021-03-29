@@ -82,11 +82,11 @@ class ApiController extends AbstractController
         //Get the data
         $value = $request->get('request');
         // Get the search response
-        $contacts = $contactRepository->findContact($value);
+        $allContacts = $contactRepository->findContact($value);
 
-        $data = [];
-        foreach ($contacts as $contact) {
-            $data[] = [
+        $contacts = [];
+        foreach ($allContacts as $contact) {
+            $contacts[] = [
                 'firstName' => $contact->getFirstName(),
                 'lastName' => $contact->getLastName(),
                 'email' => $contact->getEmail(),
@@ -94,9 +94,11 @@ class ApiController extends AbstractController
             ];
         }
 
+        $contactsJSON = json_encode($contacts);
+
         //Send data to page
-        if(isset($data) && !empty($data)){
-            return new Response(json_encode($data), 200);
+        if(isset($contacts) && !empty($contacts)){
+            return new Response($contactsJSON, 200);
         } else {
             // Incomplete data
             return new Response('Incomplete data', 404);

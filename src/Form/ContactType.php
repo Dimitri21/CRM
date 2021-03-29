@@ -32,7 +32,7 @@ class ContactType extends AbstractType
             ->add('categoryContact',EntityType::class, [
                 'class' => CategoryContact::class,
                 'choice_label' => 'title',
-                'label' => 'Catégorie'
+                'label' => 'Catégorie',
             ])
             ->add('description',null, [
                 'label' => 'Informations complémentaires'

@@ -52,10 +52,11 @@
                     {# Contact list #}
                     <div class="contactList ">
                         <table class="table">
+
                             <tbody>
                             {% for contact in contacts %}
                                 <tr>
-                                    <td>{{ contact.firstName }} {{ contact.lastName }}</td>
+                                    <td>{{ contact.firstName}} {{ contact.lastName }}</td>
                                     <td>{{ contact.phone }}</td>
                                     <td>{{ contact.email }}</td>
                                 </tr>
@@ -155,8 +156,8 @@
                     type : form.attr('method'),
                     url : form.attr('action'),
                     data : data,
-                    success: function (data) {
-                        console.info(data);
+                    success: function (contacts) {
+                        var contacts =  JSON.stringify(contacts)
                     },
                     error: function (data) {
                         console.error(data);

@@ -51,6 +51,7 @@ class DashboardsController extends AbstractController
 
         $data = json_encode($calendarEvents);
 
+        // CONTACT SEARCH
         // Get search request
         $value = $request->get('request');
 

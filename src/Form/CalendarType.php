@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Calendar;
 use App\Entity\User;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
@@ -39,9 +40,13 @@ class CalendarType extends AbstractType
             ->add('members',EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'email',
-                'expanded' => true,
                 'multiple' => true,
                 'label' => 'Membres',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.lastName', 'ASC');
+                },
+                'by_reference'=> false,
                 'attr' => [
                     'class' => 'userPicker'
                 ]

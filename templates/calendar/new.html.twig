@@ -28,17 +28,24 @@
 
     <script>
         $(document).ready(function() {
+            $('.userPicker').select2({
+                placeholder: 'Select an option'
+            })
+            /*
             $('.userPicker').select2 ({
                 ajax: {
                     url: {{ path('calendar_new') }},
-                    data: {{ allUsers|raw }}
+                    data: {{ allUsers|raw }},
+                    dataType: 'json',
+                    processResults: function (data) {
+                        return {
+                            results: data
+                        };
+                    },
 
-                    $request.then(success);
-                    $request.fail(failure);
 
-                    return $request;
                 }
-            })
+            })*/
         })
     </script>
 {% endblock %}
