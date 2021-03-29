@@ -29,23 +29,12 @@
     <script>
         $(document).ready(function() {
             $('.userPicker').select2({
-                placeholder: 'Select an option'
-            })
-            /*
-            $('.userPicker').select2 ({
-                ajax: {
-                    url: {{ path('calendar_new') }},
-                    data: {{ allUsers|raw }},
-                    dataType: 'json',
-                    processResults: function (data) {
-                        return {
-                            results: data
-                        };
-                    },
-
-
-                }
-            })*/
+                placeholder: 'Selectionnez les membres invités',
+                /*tags: true,
+                tokenSeparators: [',', ' ']
+            }).on('change', function(e) {
+                let labem = $(this).find("[data-select2-tag=true]")*/
+            });
         })
     </script>
 {% endblock %}
