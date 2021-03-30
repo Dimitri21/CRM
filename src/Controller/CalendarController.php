@@ -101,23 +101,6 @@ class CalendarController extends AbstractController
         $user = $this->getUser();
         $calendar->setCreatedBy($user);
 
-        // Retrieve all user for selecting member of the calendar event
-        $allUsers = $userRepository->findAll();
-
-        // Json options for 2select
-        $userOptions = [];
-
-        foreach ($allUsers as $allUser) {
-            $userOptions[] = [
-                'results' => [
-                    'id' => $allUser->getId(),
-                    'text' => $allUser->getEmail(),
-                ]
-            ];
-        }
-
-        $data2select = json_encode($userOptions);
-
         $form = $this->createForm(CalendarType::class, $calendar);
         $form->handleRequest($request);
 
@@ -133,7 +116,6 @@ class CalendarController extends AbstractController
             'calendar' => $calendar,
             'form' => $form->createView(),
             'current_navlink' => 'calendar',
-            'allUsers' => $data2select
         ]);
     }
 
