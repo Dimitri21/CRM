@@ -30,15 +30,6 @@ class UserProfileController extends AbstractController
             ])
             ->add('picture', FileType::class, [
                 'label' => 'Image de profil',
-                'constraints' => [
-                    new File([
-                        'maxSize' => '2048k',
-                        'mimeTypes' => [
-                            'image',
-                        ],
-                        'mimeTypesMessage' => 'Merci de télécharger une image',
-                    ])
-                ]
             ])
             ->getForm();
 
