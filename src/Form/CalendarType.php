@@ -39,7 +39,7 @@ class CalendarType extends AbstractType
             )
             ->add('members',EntityType::class, [
                 'class' => User::class,
-                'choice_label' => 'email',
+                'choice_label' => 'lastName',
                 'multiple' => true,
                 'label' => 'Membres',
                 'query_builder' => function(EntityRepository $er) {

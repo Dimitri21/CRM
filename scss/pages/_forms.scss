@@ -1,15 +1,17 @@
 .forms {
     
-    background-color: rgb(230, 234, 243);
+    background-color: $background-color;
     display: flex;
     justify-content: center;
+    min-height: 100vh;
+
 
     
     .formContainer {
         margin-top: 80px;
         margin-bottom: 100px;
         justify-content: center;
-        max-width: 600px;
+        max-width: 500px;
         background-color: white;
         padding: 30px;
         border-radius: 20px;

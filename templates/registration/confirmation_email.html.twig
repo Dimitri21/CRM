@@ -1,0 +1,11 @@
+<div class="forms">
+    <div class="formContainer">
+    <h1>Confirmez votre inscription</h1>
+        <p>
+            Merci de confirmer l'email en cliquant sur ce lien :  <br><br>
+            <a href="{{ signedUrl|raw }}">Confirmer l'email</a>.
+            Ce lien expire dans :  {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+        </p>
+
+    </div>
+</div>

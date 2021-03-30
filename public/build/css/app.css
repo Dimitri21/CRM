@@ -71,7 +71,7 @@ main {
 }
 
 .home .leftSide {
-  margin-right: 100px;
+  border: none;
 }
 
 .home .form {
@@ -95,13 +95,14 @@ main {
 }
 
 .forms {
-  background-color: #e6eaf3;
+  background-color: #f2f6fa;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  min-height: 100vh;
 }
 
 .forms .formContainer {
@@ -110,7 +111,7 @@ main {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  max-width: 600px;
+  max-width: 500px;
   background-color: white;
   padding: 30px;
   border-radius: 20px;
