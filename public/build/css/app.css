@@ -112,6 +112,7 @@ main {
       -ms-flex-pack: center;
           justify-content: center;
   max-width: 500px;
+  min-width: 350px;
   background-color: white;
   padding: 30px;
   border-radius: 20px;

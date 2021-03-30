@@ -79,6 +79,12 @@
                         </table>
                     </div>
                 </div>
+                {# Register user for Admin #}
+                {% if is_granted('ROLE_ADMIN') %}
+                <div class="card mt-5">
+                        <a href="{{ path('app_register') }}" class="btn btn-success">Inscrire un utilisateur</a>
+                </div>
+                {% endif %}
             </div>
         </div>
     </section>
