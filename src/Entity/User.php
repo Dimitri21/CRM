@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;;
 
 
 /**
@@ -81,10 +82,12 @@ class User implements UserInterface, \Serializable
     private $imageName;
 
     /**
-     *
+     * @var File|null
+     * @Assert\Image(
+     *     mimeTypes="image/*"
+     * )
      * @Vich\UploadableField(mapping="user_image", fileNameProperty="imageName")
      *
-     * @var File|null
      */
     private $imageFile;
 
