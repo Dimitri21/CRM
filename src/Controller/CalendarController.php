@@ -105,6 +105,17 @@ class CalendarController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            //filter if user is member of his own event
+            $members = $form["members"]->getData();
+            $calendarEvent = $form->getData();
+            $userEmail = $user->getEmail();
+            foreach ($members as $member) {
+                if($userEmail == $member->getEmail()) {
+                    $calendarEvent->removeMember($member);
+                }
+            };
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($calendar);
             $entityManager->flush();
