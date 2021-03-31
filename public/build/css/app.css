@@ -183,7 +183,7 @@ main {
 
 .dashboard .sideNav {
   position: fixed;
-  width: 270px;
+  width: 220px;
   height: 100%;
   background-color: #303b43;
   padding-top: 40px;
@@ -203,7 +203,7 @@ main {
 .dashboard .dashboardPanel {
   margin-top: 40px;
   float: left;
-  margin-left: 270px;
+  margin-left: 220px;
   height: 100vh;
   margin-bottom: 100px;
 }
@@ -276,6 +276,15 @@ main {
 
 .dashboard .dashboardPanel .icon.contactIcon {
   background-color: #d0eee2;
+}
+
+@media screen and (max-width: 1200px) {
+  .dashboard .sideNav {
+    display: none;
+  }
+  .dashboard .dashboardPanel {
+    margin-left: 0;
+  }
 }
 
 .showItem {

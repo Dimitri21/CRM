@@ -7,13 +7,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @Vich\Uploadable
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -69,9 +74,24 @@ class User implements UserInterface
     private $createdAt;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string|null
      */
-    private $picture;
+    private $imageName;
+
+    /**
+     *
+     * @Vich\UploadableField(mapping="user_image", fileNameProperty="imageName")
+     *
+     * @var File|null
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
 
     public function __construct()
     {
@@ -289,15 +309,65 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPicture(): ?string
+    /**
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+     */
+    public function setImageFile(?File $imageFile = null): self
     {
-        return $this->picture;
+        $this->imageFile = $imageFile;
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updatedAt = new \DateTime('now');
+        }
+        return $this;
     }
 
-    public function setPicture(?string $picture): self
+    public function getImageFile(): ?File
     {
-        $this->picture = $picture;
+        return $this->imageFile;
+    }
+
+    public function setImageName(?string $imageName): self
+    {
+        $this->imageName = $imageName;
 
         return $this;
     }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function serialize() {
+
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password,
+        ));
+
+    }
+
+    public function unserialize($serialized) {
+
+        list (
+            $this->id,
+            $this->email,
+            $this->password,
+            ) = unserialize($serialized);
+    }
+
 }
