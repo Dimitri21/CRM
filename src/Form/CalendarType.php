@@ -38,6 +38,7 @@ class CalendarType extends AbstractType
                 ]
             )
             ->add('members',EntityType::class, [
+                'required' => false,
                 'class' => User::class,
                 'choice_label' => function($allChoices, $currentChoiceKey) {
                     return $allChoices->getLastName() . " " . $allChoices->getFirstName();

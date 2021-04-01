@@ -147,11 +147,24 @@ class CalendarController extends AbstractController
      */
     public function edit(Request $request, Calendar $calendar): Response
     {
-
+        $user = $this->getUser();
         $form = $this->createForm(CalendarType::class, $calendar);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            //filter if user is member of his own event
+            $members = $form["members"]->getData();
+            $calendarEvent = $form->getData();
+            $userCreator = $calendar->getCreatedBy();
+
+            foreach ($members as $member) {
+                if($userCreator == $member) {
+                    $calendarEvent->removeMember($member);
+                }
+            };
+
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('calendar_index');
