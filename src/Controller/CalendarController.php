@@ -109,9 +109,8 @@ class CalendarController extends AbstractController
             //filter if user is member of his own event
             $members = $form["members"]->getData();
             $calendarEvent = $form->getData();
-            $userEmail = $user->getEmail();
             foreach ($members as $member) {
-                if($userEmail == $member->getEmail()) {
+                if($user == $member) {
                     $calendarEvent->removeMember($member);
                 }
             };
