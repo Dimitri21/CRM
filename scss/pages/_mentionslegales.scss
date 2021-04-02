@@ -1,10 +1,7 @@
 .mentionslegales {
-    margin: 0 auto;
-    margin-top: 15vh;
-    margin-bottom: 20vh;
-    color: #363636;
-    max-width: 500px;
-    
+
+    margin-top: 120px;
+    margin-left: 50px;
 
     
     h1, h2, h3, h4, h5, h6 {
@@ -29,10 +26,3 @@
     }
 }
 
-@media screen and (max-width: 800px) {
-
-    .mentionslegales {
-
-        margin-left: 5vh;
-    }
-}

@@ -57,12 +57,7 @@
                             {% for contact in contacts %}
                                 <tr>
                                     <td>{{ contact.firstName}} {{ contact.lastName }}</td>
-                                    <td>{{ contact.phone }}</td>
-                                    <td>{{ contact.email }}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{ contact.address }}</td>
-                                    <td>{{ contact.description }}</td>
+                                    <td>{{ contact.company }}</td>
                                     <td>
                                         <a href="{{ path('contact_show', {'id': contact.id}) }}" class="btn btn-info">Voir</a>
                                         {% if is_granted('ROLE_ADMIN') %}
@@ -99,14 +94,13 @@
 
 {% block javascripts %}
 
-    /* FULLCALENDAR */
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/locales-all.min.js"></script>
 
 
     <script type="text/javascript">
 
-        /* FULL CALENDAR */
+        // FULL CALENDAR
         window.onload = () => {
             let calendarElt = document.querySelector("#calendar-holder")
             let calendar = new FullCalendar.Calendar(calendarElt, {
