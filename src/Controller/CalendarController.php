@@ -132,13 +132,31 @@ class CalendarController extends AbstractController
     /**
      * @Route("/{id}", name="calendar_show", methods={"GET"})
      */
-    public function show(Calendar $calendar): Response
+    public function show(Calendar $calendar, CalendarRepository $calendarRepository): Response
     {
+        // Verifiying user has access to calendar
+        $user = $this->getUser();
+        $members = $calendar->getMembers();
+        $memberAccess = false;
+        foreach ($members as $member) {
+            if ($member == $user) {
+                $memberAccess = true;
+            }
+        }
 
-        return $this->render('calendar/show.html.twig', [
-            'calendar' => $calendar,
-            'current_navlink' => 'calendar'
-        ]);
+        if($calendar->getCreatedBy() == $user or $memberAccess) {
+            return $this->render('calendar/show.html.twig', [
+                'calendar' => $calendar,
+                'current_navlink' => 'calendar'
+            ]);
+        // Redirect user if entered an invalid url
+        } else {
+            return $this->render('calendar/index.html.twig', [
+                'calendars' => $calendarRepository->getUserCalendar(),
+                'current_navlink' => 'calendar'
+            ]);
+        }
+
     }
 
     /**
