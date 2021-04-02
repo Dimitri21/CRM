@@ -12,13 +12,16 @@
 
         {{ form_start(registrationForm) }}
             {{ form_row(registrationForm.firstName, {
-                label: 'Prénom'
+                label: 'Prénom',
+                required: true
             }) }}
             {{ form_row(registrationForm.lastName,{
-                label: 'Nom'
+                label: 'Nom',
+                required: true
             }) }}
             {{ form_row(registrationForm.email, {
-                label: 'Email'
+                label: 'Email',
+                required: true,
             }) }}
             {{ form_row(registrationForm.plainPassword, {
                 label: 'Mot de passe'
