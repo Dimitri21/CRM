@@ -359,4 +359,69 @@ main {
           box-shadow: 2px 2px 5px #c4c4c4;
   border-radius: 20px;
 }
+
+.confidentialite {
+  margin: 0 auto;
+  margin-top: 15vh;
+  margin-bottom: 20vh;
+  color: #363636;
+  max-width: 800px;
+}
+
+.confidentialite table, .confidentialite tbody {
+  border: none;
+}
+
+.confidentialite table {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.confidentialite td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+}
+
+.confidentialite h2, .confidentialite h3, .confidentialite h4, .confidentialite h5, .confidentialite h6 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.confidentialite p, .confidentialite li {
+  margin-bottom: 10px;
+}
+
+.confidentialite li {
+  list-style-type: circle;
+  margin-left: 50px;
+}
+
+.confidentialite ul {
+  margin-bottom: 20px;
+}
+
+.confidentialite h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.confidentialite h2 {
+  font-size: 1.8rem;
+}
+
+.confidentialite h3 {
+  font-size: 1.2rem;
+}
+
+.confidentialite p, .confidentialite li {
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.confidentialite .mini {
+  font-size: 0.8rem;
+  font-style: italic;
+}
 /*# sourceMappingURL=app.css.map */

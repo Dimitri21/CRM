@@ -10,15 +10,16 @@
                     <img src="{{ asset('build/img/Calendar_Two_Color') }}">
                     <h1>Vos rendez-vous</h1>
                 </div>
+                <div class="d-flex justify-content-end mb-3">
+                    <a class="btn btn-primary" href="{{ path('calendar_new') }}">Créer un rendez-vous</a>
+                </div>
                 <table class="table">
                     <thead>
                     <tr>
-
                         <th>Titre</th>
                         <th>Début</th>
                         <th>Fin</th>
                         <th>Description</th>
-
                     </tr>
                     </thead>
                     <tbody>
