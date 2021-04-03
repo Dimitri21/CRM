@@ -2,17 +2,17 @@
 /*FOOTER*/
 
 .footer {
-    background: #333;
+    background: $dark-bg-color;
     padding: 16px 0;
     &-inner {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        li {
-            padding: .5rem 0;
             a {
-                color: #f4f4f4;
+                color: white;
+                &:hover {
+                    text-decoration: underline;
             }
         }
     }
