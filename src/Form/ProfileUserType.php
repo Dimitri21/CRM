@@ -14,10 +14,18 @@ class ProfileUserType extends AbstractType
     {
         $builder
 
-            ->add('firstName')
-            ->add('lastName')
+            ->add('firstName',null, [
+                'label' => 'Prénom'
+            ])
+            ->add('lastName',null, [
+                    'label' => 'Nom'
+                ])
             ->add('imageFile', FileType::class, [
-                'required' => false
+                'required' => false,
+                'label' => 'Photo de profil',
+                'attr' => [
+                    'id' => 'uploadBtn'
+                ]
             ])
 
         ;

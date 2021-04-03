@@ -14,7 +14,15 @@ class LegalController extends AbstractController
     public function index(): Response
     {
         return $this->render('legal/index.html.twig', [
-            'controller_name' => 'LegalController',
+        ]);
+    }
+
+    /**
+     * @Route("/confidentiality", name="confidentiality")
+     */
+    public function confidentiality(): Response
+    {
+        return $this->render('legal/confidentiality.html.twig', [
         ]);
     }
 }

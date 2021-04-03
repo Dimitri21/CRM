@@ -12,19 +12,19 @@
                     <h1>Vos contacts</h1>
                 </div>
                 <div class="d-flex justify-content-end mb-3">
-                    <a class="btn btn-primary" href="{{ path('contact_new') }}">Créer un contact</a>
+                    <a class="btn btn-success" href="{{ path('contact_new') }}">Créer un contact</a>
                 </div>
                 <table class="table">
                     <thead>
-                    <tr>
-                        <th>Prénom</th>
-                        <th>Nom</th>
-                        <th>Téléphone</th>
-                        <th>Email</th>
-                        <th>Adresse</th>
-                        <th>Description</th>
-                        <th></th>
-                    </tr>
+                        <tr>
+                            <th>Prénom</th>
+                            <th>Nom</th>
+                            <th>Téléphone</th>
+                            <th>Email</th>
+                            <th>Entreprise</th>
+                            <th>Type</th>
+                            <th></th>
+                        </tr>
                     </thead>
                     <tbody>
                     {% for contact in contacts %}
@@ -33,8 +33,8 @@
                             <td>{{ contact.lastName }}</td>
                             <td>{{ contact.phone }}</td>
                             <td>{{ contact.email }}</td>
-                            <td>{{ contact.address }}</td>
-                            <td>{{ contact.description }}</td>
+                            <td>{{ contact.company }}</td>
+                            <td>{{ contact.categoryContact }}</td>
                             <td>
                                 <a href="{{ path('contact_show', {'id': contact.id}) }}" class="btn btn-info">Voir</a>
                                 {% if is_granted('ROLE_ADMIN') %}
