@@ -1,0 +1,17 @@
+footer {
+    background: $dark-bg-color;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    a {
+        color: white;
+        margin: 0 20px;
+        &:hover {
+            text-decoration: underline;
+            color: white;
+
+        }
+    }
+}
