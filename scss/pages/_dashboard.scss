@@ -1,5 +1,4 @@
 .dashboard {
-    background-color: $background-color;
     
     .sideNav {
         position: fixed;
@@ -10,7 +9,7 @@
         
 
         & .nav-item a {
-            color: rgb(223, 211, 211);
+            color: rgba(255,255,255,.75);
             transition: background-color ease-in 0.2s;
             &:hover {
                 color: rgb(255, 255, 255);
@@ -84,6 +83,15 @@
                 background-color: rgb(208, 238, 226);
 
             }
+        }
+    }
+}
+
+#calendar-holder {
+    a {
+        color: #333333;
+        &:hover {
+            text-decoration: none
         }
     }
 }

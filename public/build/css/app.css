@@ -77,6 +77,7 @@ main {
   font-family: 'Lato', sans-serif;
   min-height: 100vh;
   margin-top: 30px;
+  background: url("../img/header_shape.png") no-repeat right;
 }
 
 html {
@@ -262,7 +263,6 @@ html {
 }
 
 .forms {
-  background-color: #f2f6fa;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -343,10 +343,6 @@ html {
   background-color: #ffffff;
 }
 
-.dashboard {
-  background-color: #f2f6fa;
-}
-
 .dashboard .sideNav {
   position: fixed;
   width: 220px;
@@ -356,7 +352,7 @@ html {
 }
 
 .dashboard .sideNav .nav-item a {
-  color: #dfd3d3;
+  color: rgba(255, 255, 255, 0.75);
   -webkit-transition: background-color ease-in 0.2s;
   transition: background-color ease-in 0.2s;
 }
@@ -444,6 +440,14 @@ html {
   background-color: #d0eee2;
 }
 
+#calendar-holder a {
+  color: #333333;
+}
+
+#calendar-holder a:hover {
+  text-decoration: none;
+}
+
 @media screen and (max-width: 1200px) {
   .dashboard .sideNav {
     display: none;
@@ -514,7 +518,6 @@ html {
 }
 
 .agenda {
-  background-color: #f2f6fa;
   padding-top: 100px;
   padding-bottom: 150px;
 }
