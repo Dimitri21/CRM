@@ -97,7 +97,7 @@ class ApiController extends AbstractController
         $contactsJSON = json_encode($contacts);
 
         //Send data to page
-        if(isset($contacts) && !empty($contacts)){
+        if(isset($contactsJSON) && !empty($contactsJSON)){
             return new Response($contactsJSON, 200);
         } else {
             // Incomplete data

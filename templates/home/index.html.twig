@@ -1,62 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Minimalist{% endblock %}
+{% block title %}easyCRM{% endblock %}
 
 {% block body %}
-<div class="container-fluid home">
-
-    <section class="row">
-        <div class="col-sm-12 col-md-6 leftSide">
-            <img src="build/img/home_Two_Color.png">
-            <h1>Bienvenue sur le CRM de Minimalist</h1>
-        </div>
-        {# Login Form #}
-        <div class="col-sm-12 col-md-6 form">
-
-            <form method="post">
-                {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
-
-                <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
-                <label for="inputEmail">Email</label>
-                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-                <label for="inputPassword">Mot de passe</label>
-                <input type="password" name="password" id="inputPassword" class="form-control" required>
-
-                <input type="hidden" name="_csrf_token"
-                       value="{{ csrf_token('authenticate') }}"
-                >
-
-                {#
-                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                See https://symfony.com/doc/current/security/remember_me.html
-
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" name="_remember_me"> Remember me
-                    </label>
+<section class="header_area">
+    <div id="home" class="header_hero d-lg-flex align-items-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="header_hero_content">
+                            <h2 class="header_title">Connectez-vous à votre <span>tableau de bord</span></h2>
+                    </div> <!-- header hero content -->
                 </div>
-                #}
+            </div> <!-- row -->
+        </div> <!-- container -->
 
-                <button class="btn btn-lg btn-primary" type="submit">
-                    Se connecter
-                </button>
-            </form>
-        </div>
+        <div class="header_shape bg_cover d-none d-lg-block" style="background-image: url({{ asset('build/img/header_shape.png') }})"></div> <!-- header shape -->
+        <div class="header_image d-flex align-items-center justify-content-center">
+            <div class="image">
+                <img src="{{ asset('build/img/dots.svg') }}" alt="dots" class="dots">
+            </div> <!-- image -->
 
-    </section>
+            {# Login Form #}
+            <div class="formHome">
+                <form method="post">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
 
+                    <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
+                    <label for="inputEmail">Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+                    <label for="inputPassword">Mot de passe</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" required>
 
-    <section class="row">
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
 
-    </section>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                        </label>
+                    </div>
 
-
-</div>
-
-
-
-
+                    <button class="btn btn-lg btn-primary" type="submit">
+                        Se connecter
+                    </button>
+                </form>
+                <div class="mt-3">
+                    <a class="reset-password" href="{{ path('app_forgot_password_request') }}"> Mot de passe oublié</a>
+                </div>
+            </div> <!-- FormDiv -->
+        </div> <!-- header image -->
+    </div> <!-- header hero -->
+</section>
 
 {% endblock %}
