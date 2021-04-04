@@ -18,11 +18,11 @@ class LegalController extends AbstractController
     }
 
     /**
-     * @Route("/confidentiality", name="confidentiality")
+     * @Route("/privacy", name="privacy")
      */
     public function confidentiality(): Response
     {
-        return $this->render('legal/confidentiality.html.twig', [
+        return $this->render('legal/privacy.html.twig', [
         ]);
     }
 }

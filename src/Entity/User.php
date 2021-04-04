@@ -60,7 +60,7 @@ class User implements UserInterface, \Serializable
     private $isVerified = false;
 
     /**
-     * @ORM\OneToMany(targetEntity=Calendar::class, mappedBy="createdBy")
+     * @ORM\OneToMany(targetEntity=Calendar::class, mappedBy="createdBy", cascade={"remove"})
      */
     private $calendarEvents;
 

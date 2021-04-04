@@ -13,7 +13,10 @@ main {
     min-height: 100vh;
     margin-top: 30px;
     background: url("../img/header_shape.png") no-repeat right;
-
+    /*
+    background-image: url('../img/back.png'), url('../img/header_shape.png') ;
+    background-repeat: no-repeat;
+    background-position: right;*/
 }
 
 html {

@@ -9,7 +9,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="header_hero_content">
-                            <h2 class="header_title">Connectez-vous à votre <span>tableau de bord</span></h2>
+                        <img src="{{ asset('build/img/home_Two_Color.png') }}" alt="dots" class="dots">
+                        <h1 class="header_title">Connectez-vous à votre <span>tableau de bord</span></h1>
                     </div> <!-- header hero content -->
                 </div>
             </div> <!-- row -->
@@ -55,4 +56,21 @@
     </div> <!-- header hero -->
 </section>
 
+<!-- START Bootstrap-Cookie-Alert -->
+<div class="alert text-center cookiealert" role="alert">
+    <b></b> &#x1F36A; Ce site utilise uniquement des cookies nécessaires à son bon fonctionnement <a href="{{ path('privacy') }}" target="_blank" style="color:white":>En savoir plus</a>
+
+    <button type="button" class="btn btn-primary btn-sm acceptcookies">
+        OK
+    </button>
+</div>
+<!-- END Bootstrap-Cookie-Alert -->
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.css">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
 {% endblock %}

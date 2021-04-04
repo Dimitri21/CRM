@@ -60,28 +60,42 @@ z-index: 9; }
         width: 125px; } }
     @media (max-width: 767px) {
         .header_image .image .dots {
-        width: 100px; } }
+        display: none; } }
     @media only screen and (min-width: 576px) and (max-width: 767px) {
         .header_image .image .dots {
         width: 130px; } }
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 990px) {
 .header_hero_content {
-    padding-top: 50px; } }
+    margin-top: -150px; } }
+
+@media only screen and (max-width: 990px) {
+    .header_hero_content {
+        margin-top: 100px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+} }
+
 .header_hero_content .header_title {
 font-size: 50px;
 font-weight: 700;
 color: #222;
-margin-top: 20px; }
+margin-top: 20px;
+font-family: Josefin Sans;
+}
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .header_hero_content .header_title {
     font-size: 40px; } }
-@media (max-width: 767px) {
+@media only screen and (max-width: 767px) {
     .header_hero_content .header_title {
-    font-size: 24px; } }
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-    .header_hero_content .header_title {
-    font-size: 30px; } }
+        font-size: 30px;
+        text-align: center;
+        margin-right: 20px;
+        margin-left: 20px;
+} }
+
 .header_hero_content .header_title span {
     color: #1E75D9; }
 .header_hero_content p {
@@ -92,24 +106,25 @@ margin-top: 30px; }
 .header_hero_image img {
 width: 100%; }
 
+.header_hero_content img {
+    width: 280px; }
+    
 
 /* FORM */
 
 .formHome {
-    padding: 20px;
+    padding: 30px;
     width: 350px;
-    height: 385px;
+    height: auto;
     margin-top: 100px;
     margin-bottom: 150px;
-    background-color: #fff;
+    box-shadow: 5px 3px 6px rgb(224, 224, 224);
+    background: linear-gradient(70deg, #fff, #fdfdfd);
     margin-left: 40px;
     border-radius: 20px;
-    box-shadow: 2px 2px 2px rgb(224, 224, 224);
 
     input {
         margin-bottom: 15px;
-    }
-    & .btn{
     }
 }
 .reset-password {
@@ -117,6 +132,3 @@ width: 100%; }
     margin-top: 30px;
 }
 
-.header_hero h2 {
-    font-family: Josefin Sans;
-}
