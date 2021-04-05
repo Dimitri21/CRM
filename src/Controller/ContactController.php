@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Repository\ContactRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +21,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/", name="contact_index", methods={"GET"})
      */
-    public function index(ContactRepository $contactRepository, Request $request): Response
+    public function index(ContactRepository $contactRepository, Request $request, PaginatorInterface $paginator): Response
     {
 
         // Search for contact if searchbox value is set
@@ -32,8 +33,15 @@ class ContactController extends AbstractController
             $contacts = $contactRepository->findAll();
         }
 
+        $pagination = $paginator->paginate(
+            $contacts,
+            $request->query->getInt('page', 1),
+            8
+
+        );
+
         return $this->render('contact/index.html.twig', [
-            'contacts' => $contacts,
+            'contacts' => $pagination,
             'current_navlink' => 'contact'
         ]);
     }
