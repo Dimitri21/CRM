@@ -142,6 +142,7 @@
     </script>
 
     <script type="text/javascript">
+
         /* SEARCH CONTACT*/
         $(document).ready(function () {
             $("#formSearchContact").submit(function(e){
@@ -157,7 +158,7 @@
                     data : data,
                     success: function (contacts) {
                         var contacts =  JSON.stringify(contacts)
-                        console.log(data);
+                        console.log(contacts);
                     },
                     error: function (data) {
                         console.error(data);

@@ -41,6 +41,21 @@ class CalendarRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @return Calendar[] Returns an array of Calendar objects
+     */
+    public function findCalendar($value): array {
+        if ($value) {
+            return $this->createQueryBuilder('c')
+                ->orWhere('c.title = :val')
+                ->setParameter('val', $value)
+                ->getQuery()
+                ->getResult()
+                ;
+        } else {
+            return ['error'];
+        }
+    }
 
     /*
     public function findOneBySomeField($value): ?Calendar

@@ -10,9 +10,19 @@
                     <img src="{{ asset('build/img/Calendar_Two_Color') }}">
                     <h1>Vos rendez-vous</h1>
                 </div>
-                <div class="d-flex justify-content-end mb-3">
-                    <a class="btn btn-success" href="{{ path('calendar_new') }}">Créer un rendez-vous</a>
+
+                {# Searchbox / New contact#}
+                <div class="searchbox d-flex justify-content-between mb-3" id="calendarSearchIndex">
+                    <form action="{{ url('calendar_index')}}" method="GET" class="d-flex flex-row" id="formSearchContact">
+                        <input type="text" name="search" placeholder="Rechercher un rendez-vous" class="form-control" id="inputSearch" required>
+                        <button type="submit" name="submit" class="btn btn-primary" id="searchButton">Rechercher</button>
+                    </form>
+                    <div>
+                        <a class="btn btn-success" href="{{ path('calendar_new') }}">Créer un rendez-vous</a>
+                    </div>
                 </div>
+
+                {# List of calendar#}
                 <table class="table">
                     <thead>
                     <tr>

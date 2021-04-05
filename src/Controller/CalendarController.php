@@ -21,11 +21,21 @@ class CalendarController extends AbstractController
     /**
      * @Route("/", name="calendar_index", methods={"GET"})
      */
-    public function index(CalendarRepository $calendarRepository): Response
+    public function index(CalendarRepository $calendarRepository, Request $request): Response
     {
+        // Search for calendar if searchbox value is set
+
+        $value = $request->get('search');
+
+        if (isset($value) and !empty($value)) {
+            $calendars = $calendarRepository->findCalendar($value);
+        } else {
+            $calendars = $calendarRepository->getUserCalendar();
+        }
+
         return $this->render('calendar/index.html.twig', [
-            'calendars' => $calendarRepository->getUserCalendar(),
-            'current_navlink' => 'calendar'
+            'calendars' => $calendars,
+            'current_navlink' => 'calendar',
         ]);
     }
 

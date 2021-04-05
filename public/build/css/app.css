@@ -290,7 +290,6 @@ html {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: #f2f6fa;
 }
 
 .forms .formContainer {

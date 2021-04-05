@@ -22,7 +22,7 @@ class ContactRepository extends ServiceEntityRepository
      /**
      * @return Contact[] Returns an array of Contact objects
      */
-    public function findLatestContact($value): array
+    public function findLatestContact(): array
     {
 
             return $this->createQueryBuilder('q')

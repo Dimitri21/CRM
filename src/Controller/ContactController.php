@@ -20,10 +20,20 @@ class ContactController extends AbstractController
     /**
      * @Route("/", name="contact_index", methods={"GET"})
      */
-    public function index(ContactRepository $contactRepository): Response
+    public function index(ContactRepository $contactRepository, Request $request): Response
     {
+
+        // Search for contact if searchbox value is set
+        $value = $request->get('search');
+
+        if (isset($value) and !empty($value)) {
+            $contacts = $contactRepository->findContact($value);
+        } else {
+            $contacts = $contactRepository->findAll();
+        }
+
         return $this->render('contact/index.html.twig', [
-            'contacts' => $contactRepository->findAll(),
+            'contacts' => $contacts,
             'current_navlink' => 'contact'
         ]);
     }
