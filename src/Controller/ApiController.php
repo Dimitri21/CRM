@@ -94,6 +94,7 @@ class ApiController extends AbstractController
                 'phone' => $contact->getPhone(),
                 'company'=> $contact->getCompany(),
                 'showPath' => $this->generateUrl('contact_show',['id'=>$contact->getId()]),
+                // If role admin, grant the right for editing contact
                 'editPath' => $this->isGranted('ROLE_ADMIN')? $this->generateUrl('contact_edit',['id'=>$contact->getId()]):''
             ];
         }
