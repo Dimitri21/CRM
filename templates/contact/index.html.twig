@@ -13,53 +13,56 @@
                 </div>
 
                 {# Searchbox / New contact#}
-                <div class="searchbox d-flex justify-content-between mb-3" id="contactSearch">
-                    <form action="{{ url('contact_index')}}" method="GET" class="d-flex flex-row" id="formSearchContact">
-                        <input type="text" name="search" placeholder="Rechercher un contact" class="form-control" id="inputSearch" required>
-                        <button type="submit" name="submit" class="btn btn-primary" id="searchButton">Rechercher</button>
-                    </form>
-                    <div>
-                        <a class="btn btn-success" href="{{ path('contact_new') }}">Créer un contact</a>
+                <div class="tableContent">
 
+                    <div class="searchbox d-flex justify-content-between mb-3" id="contactSearch">
+                        <form action="{{ url('contact_index')}}" method="GET" class="d-flex flex-row" id="formSearchContact">
+                            <input type="text" name="search" placeholder="Rechercher un contact" class="form-control" id="inputSearch" required>
+                            <button type="submit" name="submit" class="btn btn-primary" id="searchButton">Rechercher</button>
+                        </form>
+                        <div>
+                            <a class="btn btn-success" href="{{ path('contact_new') }}">Créer un contact</a>
+
+                        </div>
                     </div>
-                </div>
 
-                {# List of contact #}
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Prénom</th>
-                            <th>Nom</th>
-                            <th>Téléphone</th>
-                            <th>Email</th>
-                            <th>Entreprise</th>
-                            <th>Type</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for contact in contacts %}
-                        <tr>
-                            <td>{{ contact.firstName }}</td>
-                            <td>{{ contact.lastName }}</td>
-                            <td>{{ contact.phone }}</td>
-                            <td>{{ contact.email }}</td>
-                            <td>{{ contact.company }}</td>
-                            <td>{{ contact.categoryContact }}</td>
-                            <td>
-                                <a href="{{ path('contact_show', {'id': contact.id}) }}" class="btn btn-info">Voir</a>
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <a href="{{ path('contact_edit', {'id': contact.id}) }}" class="btn btn-outline-success">Editer</a>
-                                {% endif %}
-                            </td>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <td colspan="8">Aucun résultat</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                    {# List of contact #}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Prénom</th>
+                                <th>Nom</th>
+                                <th>Téléphone</th>
+                                <th>Email</th>
+                                <th>Entreprise</th>
+                                <th>Type</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for contact in contacts %}
+                            <tr>
+                                <td>{{ contact.firstName }}</td>
+                                <td>{{ contact.lastName }}</td>
+                                <td>{{ contact.phone }}</td>
+                                <td>{{ contact.email }}</td>
+                                <td>{{ contact.company }}</td>
+                                <td>{{ contact.categoryContact }}</td>
+                                <td>
+                                    <a href="{{ path('contact_show', {'id': contact.id}) }}" class="btn btn-info">Voir</a>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <a href="{{ path('contact_edit', {'id': contact.id}) }}" class="btn btn-outline-success">Editer</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="8">Aucun résultat</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

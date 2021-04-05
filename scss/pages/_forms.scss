@@ -2,9 +2,6 @@
     
     display: flex;
     justify-content: center;
-    //background-color: $background-color;;
-
-
     
     .formContainer {
         margin-top: 80px;
@@ -14,11 +11,12 @@
         min-width: 350px;
         padding: 30px;
         border-radius: 20px;
-        box-shadow: 5px 3px 6px rgb(224, 224, 224);
-        background: white;
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #cfcfcf;
 
             h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
                 margin-bottom: 20px;
                 text-align: center;
             }

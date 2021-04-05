@@ -10,50 +10,52 @@
                     <img src="{{ asset('build/img/Calendar_Two_Color') }}">
                     <h1>Vos rendez-vous</h1>
                 </div>
+                <div class="tableContent">
 
-                {# Searchbox / New contact#}
-                <div class="searchbox d-flex justify-content-between mb-3" id="calendarSearchIndex">
-                    <form action="{{ url('calendar_index')}}" method="GET" class="d-flex flex-row" id="formSearchContact">
-                        <input type="text" name="search" placeholder="Rechercher un rendez-vous" class="form-control" id="inputSearch" required>
-                        <button type="submit" name="submit" class="btn btn-primary" id="searchButton">Rechercher</button>
-                    </form>
-                    <div>
-                        <a class="btn btn-success" href="{{ path('calendar_new') }}">Créer un rendez-vous</a>
+                    {# Searchbox / New contact#}
+                    <div class="searchbox d-flex justify-content-between mb-3" id="calendarSearchIndex">
+                        <form action="{{ url('calendar_index')}}" method="GET" class="d-flex flex-row" id="formSearchContact">
+                            <input type="text" name="search" placeholder="Rechercher un rendez-vous" class="form-control" id="inputSearch" required>
+                            <button type="submit" name="submit" class="btn btn-primary" id="searchButton">Rechercher</button>
+                        </form>
+                        <div>
+                            <a class="btn btn-success" href="{{ path('calendar_new') }}">Créer un rendez-vous</a>
+                        </div>
                     </div>
-                </div>
 
-                {# List of calendar#}
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Titre</th>
-                        <th>Début</th>
-                        <th>Fin</th>
-                        <th>Description</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for calendar in calendars %}
+                    {# List of calendar#}
+                    <table class="table">
+                        <thead>
                         <tr>
-                            <td>{{ calendar.title }}</td>
-                            <td>{{ calendar.start ? calendar.start|date('Y-m-d H:i:s') : '' }}</td>
-                            <td>{{ calendar.end ? calendar.end|date('Y-m-d H:i:s') : '' }}</td>
-                            <td>{{ calendar.description }}</td>
-                            <td>
-                                <a href="{{ path('calendar_show', {'id': calendar.id}) }}" class="btn btn-info">Voir</a>
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <a href="{{ path('calendar_edit', {'id': calendar.id}) }}" class="btn btn-outline-success">Editer</a>
-                                {% endif %}
-                            </td>
+                            <th>Titre</th>
+                            <th>Début</th>
+                            <th>Fin</th>
+                            <th>Description</th>
+                            <th></th>
                         </tr>
-                    {% else %}
-                        <tr>
-                            <td colspan="5">Vous n'avez pas de rendez-vous</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        {% for calendar in calendars %}
+                            <tr>
+                                <td>{{ calendar.title }}</td>
+                                <td>{{ calendar.start ? calendar.start|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ calendar.end ? calendar.end|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ calendar.description }}</td>
+                                <td>
+                                    <a href="{{ path('calendar_show', {'id': calendar.id}) }}" class="btn btn-info">Voir</a>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <a href="{{ path('calendar_edit', {'id': calendar.id}) }}" class="btn btn-outline-success">Editer</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">Vous n'avez pas de rendez-vous</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

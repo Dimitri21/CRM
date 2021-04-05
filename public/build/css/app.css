@@ -353,13 +353,13 @@ h1, h2, h3 {
   min-width: 350px;
   padding: 30px;
   border-radius: 20px;
-  -webkit-box-shadow: 5px 3px 6px #e0e0e0;
-          box-shadow: 5px 3px 6px #e0e0e0;
-  background: white;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #cfcfcf;
 }
 
 .forms .formContainer h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -405,6 +405,17 @@ h1, h2, h3 {
 
 .index .title h1 {
   margin-bottom: 30px;
+}
+
+.index .tableContent {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid #cfcfcf;
+}
+
+.index .searchbox button {
+  margin-left: 15px;
 }
 
 .index tbody tr:nth-child(odd) {
@@ -457,14 +468,14 @@ h1, h2, h3 {
 .dashboard .dashboardPanel .title h2 {
   margin-left: 20px;
   font-size: 35px;
+  margin-top: 10px;
 }
 
 .dashboard .dashboardPanel .card {
-  background-color: #fff;
-  border-radius: 10px;
-  -webkit-box-shadow: 2px 2px 5px #d8dfe7;
-          box-shadow: 2px 2px 5px #d8dfe7;
-  padding: 10px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid #cfcfcf;
 }
 
 .dashboard .dashboardPanel .card .searchbox {
@@ -599,10 +610,10 @@ h1, h2, h3 {
 }
 
 .agenda #calendar-holder {
-  padding: 10px;
-  -webkit-box-shadow: 2px 2px 5px #c4c4c4;
-          box-shadow: 2px 2px 5px #c4c4c4;
+  background-color: white;
   border-radius: 20px;
+  padding: 20px;
+  border: 1px solid #cfcfcf;
 }
 
 .confidentialite {
