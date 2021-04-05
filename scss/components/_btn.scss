@@ -18,9 +18,8 @@
 }
 
 .btn {
-    transition: transform ease-in 0.3s;
+    transition: ease-in 0.2s;
+    border-radius: 30px;
+    padding: 7px 20px;
 
-    &:hover {
-        transform: scale(1.05);
-    }
 }

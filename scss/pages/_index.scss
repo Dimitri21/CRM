@@ -15,6 +15,20 @@
             margin-bottom: 30px;
         }
     }
+
+    .tableContent {
+        background-color: white;
+        border-radius: 20px;
+        padding: 20px;
+        border: 1px solid #cfcfcf;
+        }
+
+    .searchbox {
+
+        button {
+            margin-left: 15px;
+        }
+    } 
     
     tbody {
         tr:nth-child(odd) {
@@ -26,11 +40,6 @@
         }
     }
 
-    .pagination {
-        span {
-            color: #333333;
-            margin: 0 5px;
-        }
-    }
+
 
 }

@@ -23,15 +23,10 @@
 }
 
 .btn {
-  -webkit-transition: -webkit-transform ease-in 0.3s;
-  transition: -webkit-transform ease-in 0.3s;
-  transition: transform ease-in 0.3s;
-  transition: transform ease-in 0.3s, -webkit-transform ease-in 0.3s;
-}
-
-.btn:hover {
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
+  -webkit-transition: ease-in 0.2s;
+  transition: ease-in 0.2s;
+  border-radius: 30px;
+  padding: 7px 20px;
 }
 
 .bgColorPicker {
@@ -88,6 +83,10 @@ html {
   scroll-behavior: smooth;
 }
 
+h1, h2, h3 {
+  font-family: "Josefin Sans";
+}
+
 .pagination {
   position: relative;
   display: -webkit-box;
@@ -119,6 +118,10 @@ html {
 
 .pagination span:hover {
   background-color: #a7d2ff;
+}
+
+.pagination span:hover a {
+  color: white;
 }
 
 .pagination span.current {
@@ -350,13 +353,13 @@ html {
   min-width: 350px;
   padding: 30px;
   border-radius: 20px;
-  -webkit-box-shadow: 5px 3px 6px #e0e0e0;
-          box-shadow: 5px 3px 6px #e0e0e0;
-  background: white;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #cfcfcf;
 }
 
 .forms .formContainer h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -404,17 +407,23 @@ html {
   margin-bottom: 30px;
 }
 
+.index .tableContent {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid #cfcfcf;
+}
+
+.index .searchbox button {
+  margin-left: 15px;
+}
+
 .index tbody tr:nth-child(odd) {
   background-color: #f4f7f8;
 }
 
 .index tbody tr:nth-child(even) {
   background-color: #ffffff;
-}
-
-.index .pagination span {
-  color: #333333;
-  margin: 0 5px;
 }
 
 .dashboard .sideNav {
@@ -459,14 +468,14 @@ html {
 .dashboard .dashboardPanel .title h2 {
   margin-left: 20px;
   font-size: 35px;
+  margin-top: 10px;
 }
 
 .dashboard .dashboardPanel .card {
-  background-color: #fff;
-  border-radius: 10px;
-  -webkit-box-shadow: 2px 2px 5px #d8dfe7;
-          box-shadow: 2px 2px 5px #d8dfe7;
-  padding: 10px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid #cfcfcf;
 }
 
 .dashboard .dashboardPanel .card .searchbox {
@@ -512,6 +521,10 @@ html {
 
 .dashboard .dashboardPanel .icon.contactIcon {
   background-color: #d0eee2;
+}
+
+.dashboard .register-user {
+  max-width: 300px;
 }
 
 #calendar-holder a {
@@ -597,10 +610,10 @@ html {
 }
 
 .agenda #calendar-holder {
-  padding: 10px;
-  -webkit-box-shadow: 2px 2px 5px #c4c4c4;
-          box-shadow: 2px 2px 5px #c4c4c4;
+  background-color: white;
   border-radius: 20px;
+  padding: 20px;
+  border: 1px solid #cfcfcf;
 }
 
 .confidentialite {
