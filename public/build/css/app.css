@@ -23,15 +23,10 @@
 }
 
 .btn {
-  -webkit-transition: -webkit-transform ease-in 0.3s;
-  transition: -webkit-transform ease-in 0.3s;
-  transition: transform ease-in 0.3s;
-  transition: transform ease-in 0.3s, -webkit-transform ease-in 0.3s;
-}
-
-.btn:hover {
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
+  -webkit-transition: ease-in 0.2s;
+  transition: ease-in 0.2s;
+  border-radius: 30px;
+  padding: 7px 20px;
 }
 
 .bgColorPicker {
@@ -88,6 +83,10 @@ html {
   scroll-behavior: smooth;
 }
 
+h1, h2, h3 {
+  font-family: "Josefin Sans";
+}
+
 .pagination {
   position: relative;
   display: -webkit-box;
@@ -119,6 +118,10 @@ html {
 
 .pagination span:hover {
   background-color: #a7d2ff;
+}
+
+.pagination span:hover a {
+  color: white;
 }
 
 .pagination span.current {
@@ -412,11 +415,6 @@ html {
   background-color: #ffffff;
 }
 
-.index .pagination span {
-  color: #333333;
-  margin: 0 5px;
-}
-
 .dashboard .sideNav {
   position: fixed;
   width: 220px;
@@ -512,6 +510,10 @@ html {
 
 .dashboard .dashboardPanel .icon.contactIcon {
   background-color: #d0eee2;
+}
+
+.dashboard .register-user {
+  max-width: 300px;
 }
 
 #calendar-holder a {
