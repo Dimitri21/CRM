@@ -7,10 +7,12 @@ use App\Entity\User;
 use App\Form\CalendarType;
 use App\Repository\CalendarRepository;
 use App\Repository\UserRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 /**
  * @Route("/calendar")
@@ -21,11 +23,12 @@ class CalendarController extends AbstractController
     /**
      * @Route("/", name="calendar_index", methods={"GET"})
      */
-    public function index(CalendarRepository $calendarRepository, Request $request): Response
+    public function index(CalendarRepository $calendarRepository, Request $request, PaginatorInterface $paginator): Response
     {
         // Search for calendar if searchbox value is set
 
         $value = $request->get('search');
+
 
         if (isset($value) and !empty($value)) {
             $calendars = $calendarRepository->findCalendar($value);
@@ -33,8 +36,15 @@ class CalendarController extends AbstractController
             $calendars = $calendarRepository->getUserCalendar();
         }
 
+        $pagination = $paginator->paginate(
+            $calendars,
+            $request->query->getInt('page', 1),
+            8
+
+        );
+
         return $this->render('calendar/index.html.twig', [
-            'calendars' => $calendars,
+            'calendars' => $pagination,
             'current_navlink' => 'calendar',
         ]);
     }
