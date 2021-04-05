@@ -50,8 +50,8 @@
                         </form>
                     </div>
                     {# Contact list #}
-                    <div class="contactList ">
-                        <table class="table">
+                    <div class="contactList">
+                        <table class="table" id="contactDisplayTable">
 
                             <tbody>
                             {% for contact in contacts %}
@@ -157,8 +157,34 @@
                     url : form.attr('action'),
                     data : data,
                     success: function (contacts) {
-                        var contacts =  JSON.stringify(contacts)
-                        console.log(contacts);
+                        var contacts =  JSON.parse(contacts);
+                        var html = "";
+                        console.log(contacts, typeof contacts);
+                        for (var idx in contacts) {
+                            var contact = contacts[idx];
+
+                            console.log(contact);
+
+                            html += `
+                             <tr>
+                                    <td>` + contact.firstName + ` ` + contact.lastName + `</td>
+                                    <td>` + contact.company + `</td>
+                                    <td>
+                                        <a href="` + contact.showPath + `" class="btn btn-info">Voir</a>
+                                        `+(contact.editPath!=''?`<a href="`+contact.editPath+`" class="btn btn-outline-success">Modifier</a>`:'')+`
+                                    </td>
+                                </tr>
+                            `;
+                        }
+
+                        if (html == '') {
+                            html = `
+                                <tr>
+                                    <td colspan="8">Ooops, votre recherche n'a pas donné de résultat</td>
+                                </tr>`;
+                        }
+
+                        $('#contactDisplayTable tbody').html(html);
                     },
                     error: function (data) {
                         console.error(data);

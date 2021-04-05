@@ -79,6 +79,7 @@ class ApiController extends AbstractController
      */
     public function getContact(?Contact $contact, Request $request, ContactRepository $contactRepository)
     {
+        $user = $this->getUser();
         //Get the data
         $value = $request->get('request');
         // Get the search response
@@ -90,7 +91,10 @@ class ApiController extends AbstractController
                 'firstName' => $contact->getFirstName(),
                 'lastName' => $contact->getLastName(),
                 'email' => $contact->getEmail(),
-                'phone' => $contact->getPhone()
+                'phone' => $contact->getPhone(),
+                'company'=> $contact->getCompany(),
+                'showPath' => $this->generateUrl('contact_show',['id'=>$contact->getId()]),
+                'editPath' => $this->isGranted('ROLE_ADMIN')? $this->generateUrl('contact_edit',['id'=>$contact->getId()]):''
             ];
         }
 

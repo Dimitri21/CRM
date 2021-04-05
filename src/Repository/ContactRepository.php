@@ -39,11 +39,12 @@ class ContactRepository extends ServiceEntityRepository
      */
     public function findContact($value): array {
         if ($value) {
+            $value = '%'.$value.'%';
             return $this->createQueryBuilder('c')
-                ->orWhere('c.firstName = :val')
-                ->orWhere('c.lastName = :val')
-                ->orWhere('c.phone = :val')
-                ->orWhere('c.email = :val')
+                ->orWhere('c.firstName like :val')
+                ->orWhere('c.lastName like :val')
+                ->orWhere('c.phone like :val')
+                ->orWhere('c.email like :val')
                 ->setParameter('val', $value)
                 ->getQuery()
                 ->getResult()
