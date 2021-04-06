@@ -83,7 +83,7 @@ html {
   scroll-behavior: smooth;
 }
 
-h1, h2, h3 {
+h1, h2, h3, .navbar-brand {
   font-family: "Josefin Sans";
 }
 
@@ -453,7 +453,7 @@ h1, h2, h3 {
 }
 
 .dashboard .dashboardPanel {
-  margin-top: 40px;
+  margin-top: 35px;
   float: left;
   margin-left: 220px;
   height: 100vh;

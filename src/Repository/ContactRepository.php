@@ -26,7 +26,7 @@ class ContactRepository extends ServiceEntityRepository
     {
 
             return $this->createQueryBuilder('q')
-                ->setMaxResults(10)
+                ->setMaxResults(8)
                 ->orderBy('q.createdAt', 'DESC')
                 ->getQuery()
                 ->getResult()
