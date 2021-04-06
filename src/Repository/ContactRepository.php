@@ -37,6 +37,20 @@ class ContactRepository extends ServiceEntityRepository
     /**
      * @return Contact[] Returns an array of Contact objects
      */
+    public function findAllLatestContact(): array
+    {
+
+        return $this->createQueryBuilder('q')
+            ->orderBy('q.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+
+    }
+
+    /**
+     * @return Contact[] Returns an array of Contact objects
+     */
     public function findContact($value): array {
         if ($value) {
             $value = '%'.$value.'%';

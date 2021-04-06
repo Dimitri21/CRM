@@ -30,7 +30,7 @@ class ContactController extends AbstractController
         if (isset($value) and !empty($value)) {
             $contacts = $contactRepository->findContact($value);
         } else {
-            $contacts = $contactRepository->findAll();
+            $contacts = $contactRepository->findAllLatestContact();
         }
 
         $pagination = $paginator->paginate(

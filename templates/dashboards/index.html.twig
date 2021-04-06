@@ -20,19 +20,6 @@
 
     {# Dashboard panel #}
     <section class="dashboardPanel container-fluid">
-
-        {# read and display all flash messages #}
-        {% for label, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="alert alert-{{ label }} .alert-dismissible class" style="margin-top: 12px" role="alert">
-                    {{ message }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            {% endfor %}
-        {% endfor %}
-
         <div class="row">
             {# Agenda section #}
             <div class="col-12 col-lg-7 mt-3">
