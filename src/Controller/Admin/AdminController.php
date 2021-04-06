@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Calendar;
+use App\Entity\CategoryContact;
 use App\Entity\Contact;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -37,6 +38,7 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Calendar', 'fa fa-calendar-alt',  Calendar::class);
         yield MenuItem::linkToCrud('Contact', 'fa fa-id-card',  Contact::class);
         yield MenuItem::linkToCrud('User', 'fa fa-user',  User::class);
+        yield MenuItem::linkToCrud('Catégorie contact', 'fa fa-user',  CategoryContact::class);
         yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
