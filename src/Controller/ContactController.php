@@ -30,7 +30,7 @@ class ContactController extends AbstractController
         if (isset($value) and !empty($value)) {
             $contacts = $contactRepository->findContact($value);
         } else {
-            $contacts = $contactRepository->findAll();
+            $contacts = $contactRepository->findAllLatestContact();
         }
 
         $pagination = $paginator->paginate(
@@ -60,6 +60,11 @@ class ContactController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);
             $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                'Votre contact a été créé!'
+            );
 
             return $this->redirectToRoute('contact_index');
         }

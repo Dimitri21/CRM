@@ -60,7 +60,7 @@ class Calendar
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="calendarEvents", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="calendarEvents")
      */
     private $createdBy;
 

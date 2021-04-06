@@ -139,7 +139,12 @@ class CalendarController extends AbstractController
             $entityManager->persist($calendar);
             $entityManager->flush();
 
-            return $this->redirectToRoute('dashboard');
+            $this->addFlash(
+                'success',
+                'Votre rendez-vous a été créé!'
+            );
+
+            return $this->redirectToRoute('calendar_agenda');
         }
 
         return $this->render('calendar/new.html.twig', [
