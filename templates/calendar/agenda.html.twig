@@ -7,6 +7,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
+                    {# New calendar #}
+                    <div class="searchbox d-flex justify-content-end mb-3" id="calendarSearchIndex">
+                        <div>
+                            <a class="btn btn-success" href="{{ path('calendar_new') }}">Créer un rendez-vous</a>
+                        </div>
+                    </div>
                     <div id="calendar-holder" class="card"></div>
                 </div>
             </div>

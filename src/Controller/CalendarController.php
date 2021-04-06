@@ -139,9 +139,10 @@ class CalendarController extends AbstractController
             $entityManager->persist($calendar);
             $entityManager->flush();
 
+            // Flash message success
             $this->addFlash(
                 'success',
-                'Votre rendez-vous a été créé!'
+                'Votre rendez-vous a été créé'
             );
 
             return $this->redirectToRoute('calendar_agenda');
@@ -206,6 +207,11 @@ class CalendarController extends AbstractController
                 }
             };
 
+            // Flash message success
+            $this->addFlash(
+                'info',
+                'Votre rendez-vous a été modifié'
+            );
 
             $this->getDoctrine()->getManager()->flush();
 
@@ -233,6 +239,12 @@ class CalendarController extends AbstractController
             $entityManager->remove($calendar);
             $entityManager->flush();
         }
+
+        // Flash message success
+        $this->addFlash(
+            'danger',
+            'Votre rendez-vous a été supprimé'
+        );
 
         return $this->redirectToRoute('calendar_index');
     }

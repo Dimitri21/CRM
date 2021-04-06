@@ -61,9 +61,10 @@ class ContactController extends AbstractController
             $entityManager->persist($contact);
             $entityManager->flush();
 
+            // FLash messsage success
             $this->addFlash(
                 'success',
-                'Votre contact a été créé!'
+                'Votre contact a été créé'
             );
 
             return $this->redirectToRoute('contact_index');
@@ -100,6 +101,12 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            // FLash messsage success
+            $this->addFlash(
+                'info',
+                'Votre contact a été modifié'
+            );
+
             return $this->redirectToRoute('contact_index');
         }
 
@@ -123,6 +130,12 @@ class ContactController extends AbstractController
             $entityManager->remove($contact);
             $entityManager->flush();
         }
+
+        // FLash messsage success
+        $this->addFlash(
+            'danger',
+            'Votre contact a été supprimé'
+        );
 
         return $this->redirectToRoute('contact_index');
     }
