@@ -30,7 +30,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/{id}/edit", name="api_event_edit", methods={"PUT"})
+     * @Route("/api/{id}/edit", name="api_event_edit", methods={"POST"})
      */
     public function majEvent(?Calendar $calendar, Request $request)
     {

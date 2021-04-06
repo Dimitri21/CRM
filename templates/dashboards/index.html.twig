@@ -123,6 +123,7 @@
                 allDaySlot: false
             })
 
+            // AJAX request on drag a drop calendar change
             calendar.on('eventChange', (e) => {
                 let url = `/api/${e.event.id}/edit`
                 let data = {
@@ -134,7 +135,7 @@
                 }
 
                 let xhr = new XMLHttpRequest
-                xhr.open("PUT", url)
+                xhr.open("POST", url)
                 xhr.send(JSON.stringify(data))
             })
             calendar.render()
@@ -169,15 +170,16 @@
                             //Prepare the displayed html
                             html += `
                              <tr>
-                                    <td>` + contact.firstName + ` ` + contact.lastName + `</td>
-                                    <td>` + contact.company + `</td>
+                                    <td>  ${contact.firstName} ${contact.lastName} </td>
+                                    <td> ${contact.company}</td>
                                     <td>
-                                        <a href="` + contact.showPath + `" class="btn btn-info">Voir</a>
-                                        `+(contact.editPath!=''?`<a href="`+contact.editPath+`" class="btn btn-outline-success">Modifier</a>`:'')+`
+                                        <a href="${contact.showPath}" class="btn btn-info">Voir</a>
+                                        ${(contact.editPath!=''?`<a href="`+contact.editPath+`" class="btn btn-outline-success">Modifier</a>`:'')}
                                     </td>
                                 </tr>
                             `;
                         }
+
                         // If no result
                         if (html == '') {
                             html = `
