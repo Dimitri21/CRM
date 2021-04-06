@@ -24,6 +24,10 @@
                     <td>{{ calendar.end ? calendar.end|date('Y-m-d H:i:s') : '' }}</td>
                 </tr>
                 <tr>
+                    <th>Organisateur</th>
+                    <td>{{ calendar.createdBy.firstName }} {{ calendar.createdBy.lastName }}</td>
+                </tr>
+                <tr>
                     <th>Description</th>
                     <td>{{ calendar.description }}</td>
                 </tr>

@@ -12,12 +12,8 @@
         <table class="table">
             <tbody>
             <tr>
-                <th>Prénom</th>
-                <td>{{ contact.firstName }} </td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ contact.lastName }}</td>
+                <th>Nom / prénom</th>
+                <td>{{ contact.lastName }} {{ contact.firstName }} </td>
             </tr>
             <tr>
                 <th>Téléphone</th>
@@ -26,6 +22,10 @@
             <tr>
                 <th>Email</th>
                 <td>{{ contact.email }}</td>
+            </tr>
+            <tr>
+                <th>Entreprise</th>
+                <td>{{ contact.company }}</td>
             </tr>
             <tr>
                 <th>Adresse</th>
