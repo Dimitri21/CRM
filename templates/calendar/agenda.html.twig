@@ -5,6 +5,19 @@
 {% block body %}
     <div class="agenda">
         <div class="container">
+
+            {# read and display all flash messages #}
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} .alert-dismissible class" style="margin-top: 12px" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
             <div class="row">
                 <div class="col-sm-12">
                     <div id="calendar-holder" class="card"></div>

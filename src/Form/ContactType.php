@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\CategoryContact;
 use App\Entity\Contact;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,8 +24,9 @@ class ContactType extends AbstractType
             ->add('phone',null, [
                 'label' => 'Téléphone'
             ])
-            ->add('email',null, [
-                'label' => 'Email'
+            ->add('email',EmailType::class, [
+                'label' => 'Email',
+                'required' => false
             ])
             ->add('company',null, [
                 'label' => 'Entreprise'

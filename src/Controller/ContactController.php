@@ -61,6 +61,11 @@ class ContactController extends AbstractController
             $entityManager->persist($contact);
             $entityManager->flush();
 
+            $this->addFlash(
+                'success',
+                'Votre contact a été créé!'
+            );
+
             return $this->redirectToRoute('contact_index');
         }
 
