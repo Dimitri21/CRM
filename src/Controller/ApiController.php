@@ -14,8 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
- * Require ROLE_USER for *every* controller method in this class.
- *
  * @IsGranted("ROLE_USER")
  */
 
@@ -65,7 +63,6 @@ class ApiController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($calendar);
             $em->flush();
-
 
             return new Response('Ok', $code);
         } else {

@@ -123,6 +123,11 @@ width: 100%; }
     margin-left: 40px;
     border-radius: 20px;
 
+    @media screen  and (max-width: 600) {
+        margin-left: 0px;
+     }
+
+
     input {
         margin-bottom: 15px;
     }
