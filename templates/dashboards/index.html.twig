@@ -154,11 +154,13 @@
                 var form = $(this);
                 var data = {request : $("#inputSearch").val()};
 
+                // AJAX REQUEST
                 $.ajax({
                     type : form.attr('method'),
                     url : form.attr('action'),
                     data : data,
                     success: function (contacts) {
+                        // Get the data
                         var contacts =  JSON.parse(contacts);
                         var html = "";
                         console.log(contacts, typeof contacts);
@@ -166,7 +168,7 @@
                             var contact = contacts[idx];
 
                             console.log(contact);
-
+                            //Prepare the displayed html
                             html += `
                              <tr>
                                     <td>` + contact.firstName + ` ` + contact.lastName + `</td>
@@ -178,14 +180,14 @@
                                 </tr>
                             `;
                         }
-
+                        // If no result
                         if (html == '') {
                             html = `
                                 <tr>
                                     <td colspan="8">Ooops, votre recherche n'a pas donné de résultat</td>
                                 </tr>`;
                         }
-
+                        // Add the result to the HTML
                         $('#contactDisplayTable tbody').html(html);
                     },
                     error: function (data) {
