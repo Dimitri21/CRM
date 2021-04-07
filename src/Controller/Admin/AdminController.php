@@ -35,11 +35,11 @@ class AdminController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         // yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Calendar', 'fa fa-calendar-alt',  Calendar::class);
+        yield MenuItem::linkToCrud('Calendrier', 'fa fa-calendar-alt',  Calendar::class);
         yield MenuItem::linkToCrud('Contact', 'fa fa-id-card',  Contact::class);
-        yield MenuItem::linkToCrud('User', 'fa fa-user',  User::class);
-        yield MenuItem::linkToCrud('Catégorie contact', 'fa fa-user',  CategoryContact::class);
-        yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
+        yield MenuItem::linkToCrud('Utilisateur', 'fa fa-user',  User::class);
+        yield MenuItem::linkToCrud('Catégorie contact', 'fa fa-table',  CategoryContact::class);
+        yield MenuItem::linkToLogout('Déconnexion', 'fas fa-sign-out-alt');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }
