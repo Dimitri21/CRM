@@ -39,6 +39,7 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Contact', 'fa fa-id-card',  Contact::class);
         yield MenuItem::linkToCrud('Utilisateur', 'fa fa-user',  User::class);
         yield MenuItem::linkToCrud('Catégorie contact', 'fa fa-table',  CategoryContact::class);
+        yield MenuItem::linkToRoute('Dashboard', 'fas fa-columns',  "dashboard");
         yield MenuItem::linkToLogout('Déconnexion', 'fas fa-sign-out-alt');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
