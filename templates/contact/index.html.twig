@@ -50,9 +50,7 @@
                                 <td>{{ contact.categoryContact }}</td>
                                 <td>
                                     <a href="{{ path('contact_show', {'id': contact.id}) }}" class="btn btn-info">Voir</a>
-                                    {% if is_granted('ROLE_ADMIN') %}
-                                        <a href="{{ path('contact_edit', {'id': contact.id}) }}" class="btn btn-outline-success">Editer</a>
-                                    {% endif %}
+                                    <a href="{{ path('contact_edit', {'id': contact.id}) }}" class="btn btn-outline-success">Editer</a>
                                 </td>
                             </tr>
                         {% else %}
