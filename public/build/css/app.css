@@ -508,6 +508,13 @@ h1, h2, h3, .navbar-brand {
   margin-left: 20px;
 }
 
+.dashboard .dashboardPanel .card .contactList {
+  max-height: 650px;
+  overflow: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
 .dashboard .dashboardPanel .card .contactList .contactCard {
   margin-bottom: 20px;
   background-color: #f6f7fc;
@@ -559,10 +566,6 @@ h1, h2, h3, .navbar-brand {
   background-color: #d0eee2;
 }
 
-.dashboard .register-user {
-  max-width: 300px;
-}
-
 #calendar-holder a {
   color: #333333;
 }
@@ -571,7 +574,13 @@ h1, h2, h3, .navbar-brand {
   text-decoration: none;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1500px) {
+  .contactList {
+    max-height: 500px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
   .dashboard .sideNav {
     display: none;
   }

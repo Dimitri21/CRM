@@ -89,12 +89,6 @@
                     {% endfor %}
                     </div>
                 </div>
-                {# Register user for Admin #}
-                {% if is_granted('ROLE_ADMIN') %}
-                <div class="card mt-4 mb-5 register-user">
-                    <a href="{{ path('app_register') }}" class="btn btn-success">Inscrire un utilisateur</a>
-                </div>
-                {% endif %}
             </div>
         </div>
     </section>
