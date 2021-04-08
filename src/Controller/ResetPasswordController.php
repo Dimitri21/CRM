@@ -150,9 +150,10 @@ class ResetPasswordController extends AbstractController
             //
             // $this->addFlash('reset_password_error', sprintf(
             //     'There was a problem handling your password reset request - %s',
-            //     $e->getReason()
-            // ));
+            //    $e->getReason()
+            //));
 
+            // return $this->redirectToRoute('app_forgot_password_request');
             return $this->redirectToRoute('app_check_email');
         }
 
