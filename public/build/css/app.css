@@ -332,6 +332,12 @@ h1, h2, h3, .navbar-brand {
   border-radius: 20px;
 }
 
+@media screen and (max-width: 600) {
+  .formHome {
+    margin-left: 0px;
+  }
+}
+
 .formHome input {
   margin-bottom: 15px;
 }
@@ -500,6 +506,29 @@ h1, h2, h3, .navbar-brand {
 
 .dashboard .dashboardPanel .card .searchbox button[type="submit"] {
   margin-left: 20px;
+}
+
+.dashboard .dashboardPanel .card .contactList .contactCard {
+  margin-bottom: 20px;
+  background-color: #f6f7fc;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.dashboard .dashboardPanel .card .contactList .contactCard div p {
+  margin-bottom: 0px;
+}
+
+.dashboard .dashboardPanel .card .contactList .contactCard h4 {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.dashboard .dashboardPanel .card .contactList .contactCard i {
+  margin-top: 5px;
+  margin-right: 15px;
+  margin-bottom: 5px;
+  font-size: 15px;
 }
 
 .dashboard .dashboardPanel .icon {

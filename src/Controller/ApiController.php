@@ -85,14 +85,14 @@ class ApiController extends AbstractController
         $contacts = [];
         foreach ($allContacts as $contact) {
             $contacts[] = [
-                'firstName' => $contact->getFirstName(),
-                'lastName' => $contact->getLastName(),
-                'email' => $contact->getEmail(),
-                'phone' => $contact->getPhone(),
-                'company'=> $contact->getCompany(),
+                'firstName' => !is_null($contact->getFirstName())?$contact->getFirstName():'',
+                'lastName' => !is_null($contact->getLastName())?$contact->getLastName():'',
+                'email' => !is_null($contact->getEmail())? $contact->getEmail(): '',
+                'phone' => !is_null($contact->getPhone())?$contact->getPhone():'',
+                'company'=> !is_null($contact->getCompany())?$contact->getCompany():'',
+                'categoryContact'=> !is_null($contact->getCategoryContact()->getTitle())?$contact->getCategoryContact()->getTitle():'',
                 'showPath' => $this->generateUrl('contact_show',['id'=>$contact->getId()]),
-                // If role admin, grant the right for editing contact
-                'editPath' => $this->isGranted('ROLE_ADMIN')? $this->generateUrl('contact_edit',['id'=>$contact->getId()]):''
+                'editPath' => $this->generateUrl('contact_edit',['id'=>$contact->getId()])
             ];
         }
 

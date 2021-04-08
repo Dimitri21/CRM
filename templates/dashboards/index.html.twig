@@ -51,25 +51,42 @@
                     </div>
                     {# Contact list #}
                     <div class="contactList">
-                        <table class="table" id="contactDisplayTable">
-
-                            <tbody>
-                            {% for contact in contacts %}
-                                <tr>
-                                    <td>{{ contact.firstName}} {{ contact.lastName }}</td>
-                                    <td>{{ contact.company }}</td>
-                                    <td>
+                    {% for contact in contacts %}
+                        <div class="contactCard">
+                            <h4>{{ contact.firstName}} {{ contact.lastName }}</h4>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="d-flex">
+                                        <i class="far fa-building"></i>
+                                        <p>{{ contact.company }}</p>
+                                    </div>
+                                    <div class="d-flex">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <p>{{ contact.phone }}</p>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex">
+                                        <i class="far fa-envelope"></i>
+                                        <p>{{ contact.email }}</p>
+                                    </div>
+                                    <div class="d-flex">
+                                        <i class="fas fa-briefcase"></i>
+                                        <p>{{ contact.categoryContact }}</p>
+                                    </div>
+                                    <div class="mt-3">
                                         <a href="{{ path('contact_show', {'id': contact.id}) }}" class="btn btn-info">Voir</a>
                                         <a href="{{ path('contact_edit', {'id': contact.id}) }}" class="btn btn-outline-success">Modifier</a>
-                                    </td>
-                                </tr>
-                            {% else %}
-                                <tr>
-                                    <td colspan="8">Ooops, votre recherche n'a pas donné de résultat</td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% else %}
+                        <tr>
+                            <td colspan="8">Ooops, votre recherche n'a pas donné de résultat</td>
+                        </tr>
+                    {% endfor %}
                     </div>
                 </div>
                 {# Register user for Admin #}
@@ -90,6 +107,7 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 {% endblock %}
 
 {% block javascripts %}
@@ -160,21 +178,40 @@
                         // Get the data
                         var contacts =  JSON.parse(contacts);
                         var html = "";
-                        console.log(contacts, typeof contacts);
                         for (var idx in contacts) {
                             var contact = contacts[idx];
-
-                            console.log(contact);
                             //Prepare the displayed html
                             html += `
-                             <tr>
-                                    <td>  ${contact.firstName} ${contact.lastName} </td>
-                                    <td> ${contact.company}</td>
-                                    <td>
-                                        <a href="${contact.showPath}" class="btn btn-info">Voir</a>
-                                        ${(contact.editPath!=''?`<a href="`+contact.editPath+`" class="btn btn-outline-success">Modifier</a>`:'')}
-                                    </td>
-                                </tr>
+                            <div class="contactCard">
+                               <h4> ${contact.firstName} ${contact.lastName} </h4>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="d-flex">
+                                            <i class="far fa-building"></i>
+                                            <p>${contact.company}</p>
+                                        </div>
+                                        <div class="d-flex">
+                                            <i class="fas fa-mobile-alt"></i>
+                                            <p>${ contact.phone }</p>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="d-flex">
+                                            <i class="far fa-envelope"></i>
+                                            <p>${ contact.email }</p>
+                                        </div>
+                                        <div class="d-flex">
+                                            <i class="fas fa-briefcase"></i>
+                                            <p>${ contact.categoryContact }</p>
+                                        </div>
+                                        <div class="mt-3">
+                                            <a href="${contact.showPath}" class="btn btn-info">Voir</a>
+                                            <a href="${contact.editPath}" class="btn btn-outline-success">Modifier</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             `;
                         }
 
@@ -186,7 +223,7 @@
                                 </tr>`;
                         }
                         // Add the result to the HTML
-                        $('#contactDisplayTable tbody').html(html);
+                        $('.contactList').html(html);
                     },
                     error: function (data) {
                         console.error(data);

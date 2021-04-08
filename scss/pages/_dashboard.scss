@@ -58,6 +58,36 @@
                     margin-left: 20px;
                 }
             }
+
+
+             // Contact search result
+            .contactList {
+                .contactCard {
+                    margin-bottom: 20px;
+                    background-color: #f6f7fc;
+                    border-radius: 20px;
+                    padding: 20px;
+
+                    div {
+                        p {
+                            margin-bottom: 0px;
+                        }
+                    }
+
+                    h4 {
+                        font-weight: 700;
+                        margin-bottom: 12px;
+                    }
+
+                    i {
+                        margin-top: 5px;
+                        margin-right: 15px;
+                        margin-bottom: 5px;
+                        font-size: 15px;
+                    }
+
+                }
+            }
         }
 
         .icon {
@@ -83,7 +113,10 @@
                 background-color: rgb(208, 238, 226);
 
             }
+            
         }
+
+       
     }
     .register-user {
         max-width: 300px;
