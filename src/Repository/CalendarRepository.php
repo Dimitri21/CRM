@@ -45,11 +45,16 @@ class CalendarRepository extends ServiceEntityRepository
      * @return Calendar[] Returns an array of Calendar objects
      */
     public function findCalendar($value): array {
+
+        $user = $this->security->getUser();
+
         $value = '%'.$value.'%';
         if ($value) {
             return $this->createQueryBuilder('c')
-                ->orWhere('c.title like :val')
+                ->andWhere('c.createdBy = :user')
+                ->andWhere('c.title like :val')
                 ->setParameter('val', $value)
+                ->setParameter('user', $user)
                 ->getQuery()
                 ->getResult()
                 ;
