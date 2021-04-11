@@ -35,11 +35,24 @@ class CalendarRepository extends ServiceEntityRepository
 
         return $this->createQueryBuilder('c')
             ->andWhere('c.createdBy = :user')
-            ->orWhere(':user MEMBER OF c.members')
             ->setParameter('user', $user)
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    public function getUserCalendarWithMember()
+    {
+
+        $user = $this->security->getUser();
+
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.createdBy = :user')
+            ->orWhere(':user MEMBER OF c.members')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     /**

@@ -33,7 +33,7 @@ class CalendarController extends AbstractController
         if (isset($value) and !empty($value)) {
             $calendars = $calendarRepository->findCalendar($value);
         } else {
-            $calendars = $calendarRepository->getUserCalendar();
+            $calendars = $calendarRepository->getUserCalendarWithMember();
         }
 
         $pagination = $paginator->paginate(
