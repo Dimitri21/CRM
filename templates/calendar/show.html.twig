@@ -27,6 +27,7 @@
                     <th>Organisateur</th>
                     <td>{{ calendar.createdBy.firstName }} {{ calendar.createdBy.lastName }}</td>
                 </tr>
+                {% if calendar.members is not empty %}
                 <tr>
                     <th>Membres</th>
                     <td>
@@ -35,6 +36,7 @@
                     {% endfor %}
                     </td>
                 </tr>
+                {% endif %}
                 <tr>
                     <th>Description</th>
                     <td>{{ calendar.description }}</td>
