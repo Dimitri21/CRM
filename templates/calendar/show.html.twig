@@ -28,6 +28,14 @@
                     <td>{{ calendar.createdBy.firstName }} {{ calendar.createdBy.lastName }}</td>
                 </tr>
                 <tr>
+                    <th>Membres</th>
+                    <td>
+                    {% for member in calendar.members %}
+                        {{ member.firstName }} {{ member.lastName }} </br>
+                    {% endfor %}
+                    </td>
+                </tr>
+                <tr>
                     <th>Description</th>
                     <td>{{ calendar.description }}</td>
                 </tr>
