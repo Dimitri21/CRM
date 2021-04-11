@@ -98,7 +98,6 @@ class CalendarController extends AbstractController
             ];
         }
 
-
         $data = json_encode($calendarEvents);
 
         return $this->render('calendar/agenda.html.twig', [

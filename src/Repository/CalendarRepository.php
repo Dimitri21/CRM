@@ -35,6 +35,7 @@ class CalendarRepository extends ServiceEntityRepository
 
         return $this->createQueryBuilder('c')
             ->andWhere('c.createdBy = :user')
+            ->orWhere(':user MEMBER OF c.members')
             ->setParameter('user', $user)
             ->getQuery()
             ->getResult()
@@ -52,6 +53,7 @@ class CalendarRepository extends ServiceEntityRepository
         if ($value) {
             return $this->createQueryBuilder('c')
                 ->andWhere('c.createdBy = :user')
+                ->orWhere(':user MEMBER OF c.members')
                 ->andWhere('c.title like :val')
                 ->setParameter('val', $value)
                 ->setParameter('user', $user)

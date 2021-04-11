@@ -363,7 +363,6 @@ h1, h2, h3, .navbar-brand {
       -ms-flex-pack: center;
           justify-content: center;
   max-width: 500px;
-  min-width: 250px;
   padding: 30px;
   border-radius: 20px;
   background-color: white;
