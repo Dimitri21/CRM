@@ -58,11 +58,17 @@
 
             <div class="d-flex justify-content-center mb-3">
                 <a href="{{ path('calendar_index') }}" class="btn btn-outline-info">Liste des rendez-vous</a>
-                <a href="{{ path('calendar_edit', {'id': calendar.id}) }}" class="btn btn-outline-success ml-2">Editer</a>
+                {% if calendar.createdBy == app.user %}
+                    <a href="{{ path('calendar_edit', {'id': calendar.id}) }}" class="btn btn-outline-success ml-2">Editer</a>
+                {% endif %}
             </div>
             <div class="d-flex justify-content-center">
-                {% if is_granted('ROLE_ADMIN') %}
-                    {{ include('calendar/_delete_form.html.twig') }}
+                {% if calendar.createdBy != app.user %}
+                    <div> {{ include('calendar/_delete_member_form.html.twig') }}</div>
+                {% endif %}
+
+                {% if is_granted('ROLE_ADMIN') or calendar.createdBy == app.user%}
+                    <div class="ml-2"> {{ include('calendar/_delete_form.html.twig') }} </div>
                 {% endif %}
             </div>
         </div>

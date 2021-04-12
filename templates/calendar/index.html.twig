@@ -46,7 +46,9 @@
                                     <td>{{ calendar.description }}</td>
                                     <td>
                                         <a href="{{ path('calendar_show', {'id': calendar.id}) }}" class="btn btn-info">Voir</a>
-                                        <a href="{{ path('calendar_edit', {'id': calendar.id}) }}" class="btn btn-outline-success">Editer</a>
+                                        {% if calendar.createdBy == app.user %}
+                                            <a href="{{ path('calendar_edit', {'id': calendar.id}) }}" class="btn btn-outline-success">Editer</a>
+                                        {% endif %}
                                     </td>
                                 </tr>
                             {% else %}

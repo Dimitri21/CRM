@@ -224,14 +224,36 @@ class CalendarController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/remove-member/{id}", name="calendar_remove_member", methods={"POST"})
+     */
+    public function removeMember(Calendar $calendar, Request $request): Response
+    {
+        $user = $this->getUser();
+
+        $calendar->removeMember($user);
+
+        if ($this->isCsrfTokenValid('removeMember'.$calendar->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($calendar);
+            $entityManager->flush();
+        }
+        // Flash message success
+        $this->addFlash(
+            'danger',
+            'Vous avez quitté le rendez-vous'
+        );
+
+        return $this->redirectToRoute('calendar_index');
+
+    }
+
     /**
      * @Route("/{id}", name="calendar_delete", methods={"POST"})
      */
     public function delete(Request $request, Calendar $calendar): Response
     {
-        // Only access for admin user
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
 
         if ($this->isCsrfTokenValid('delete'.$calendar->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -247,4 +269,5 @@ class CalendarController extends AbstractController
 
         return $this->redirectToRoute('calendar_index');
     }
+
 }
