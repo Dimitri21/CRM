@@ -58,7 +58,7 @@
 
             <div class="d-flex justify-content-center mb-3">
                 <a href="{{ path('calendar_index') }}" class="btn btn-outline-info">Liste des rendez-vous</a>
-                {% if calendar.createdBy == app.user %}
+                {% if calendar.createdBy == app.user or is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('calendar_edit', {'id': calendar.id}) }}" class="btn btn-outline-success ml-2">Editer</a>
                 {% endif %}
             </div>
