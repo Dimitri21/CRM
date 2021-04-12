@@ -363,6 +363,7 @@ h1, h2, h3, .navbar-brand {
       -ms-flex-pack: center;
           justify-content: center;
   max-width: 500px;
+  min-width: 350px;
   padding: 30px;
   border-radius: 20px;
   background-color: white;
@@ -399,6 +400,7 @@ h1, h2, h3, .navbar-brand {
   .formContainerFields {
     padding-left: 20px;
     padding-right: 20px;
+    min-width: 250px;
   }
 }
 

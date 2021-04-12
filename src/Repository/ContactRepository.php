@@ -59,6 +59,7 @@ class ContactRepository extends ServiceEntityRepository
                 ->orWhere('c.lastName like :val')
                 ->orWhere('c.phone like :val')
                 ->orWhere('c.email like :val')
+                ->orWhere('c.company like :val')
                 ->setParameter('val', $value)
                 ->getQuery()
                 ->getResult()

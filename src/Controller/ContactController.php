@@ -37,7 +37,6 @@ class ContactController extends AbstractController
             $contacts,
             $request->query->getInt('page', 1),
             8
-
         );
 
         return $this->render('contact/index.html.twig', [
