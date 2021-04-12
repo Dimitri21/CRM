@@ -654,6 +654,13 @@ h1, h2, h3, .navbar-brand {
   margin-bottom: 80px;
 }
 
+.showItem .showContainer .imageProfile {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
 .agenda {
   padding-top: 100px;
   padding-bottom: 150px;

@@ -25,14 +25,26 @@
                 </tr>
                 <tr>
                     <th>Organisateur</th>
-                    <td>{{ calendar.createdBy.firstName }} {{ calendar.createdBy.lastName }}</td>
+                    <td>
+                        <div class="d-flex align-items-center">
+
+                                <img src="{% if calendar.createdBy.imageName %} /images/user/{{ calendar.createdBy.imageName }} {% else %} https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg {% endif %}" class="imageProfile" >
+
+                            {{ calendar.createdBy.firstName }} {{ calendar.createdBy.lastName }}
+                        </div>
+                    </td>
                 </tr>
                 {% if calendar.members is not empty %}
                 <tr>
                     <th>Membres</th>
                     <td>
                     {% for member in calendar.members %}
-                        {{ member.firstName }} {{ member.lastName }} </br>
+                        <div class="d-flex align-items-center mb-1">
+
+                                <img src="{% if member.imageName %}/images/user/{{ member.imageName }} {% else %} https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg {% endif %}" class="imageProfile" >
+                            {{ member.firstName }} {{ member.lastName }}
+                        </div>
+
                     {% endfor %}
                     </td>
                 </tr>
